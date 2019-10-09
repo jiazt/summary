@@ -37,7 +37,7 @@ void MergeList(List La,List Lb,List &Lc) {
     }
 }
 
-//<-- 顺序表  -->
+//<------- 顺序表  -------->
 //线性表的存储结构
 #define List_Init_Size 100 //线性表存储空间 初始化分配量
 #define ListIncrement  10  //线性表存储空间 分配增量
@@ -135,10 +135,66 @@ void MergeList_Sq(SqList La, SqList Lb, SqList &Lc) {
     }
 }
 
-// <-- 链式表 -->
+// <------ 链式表 -------->
 //当第i个元素存在时，其值赋给e
 Status GetElem_L(LinkList L, int i,ElemType &e) {
     p = L->next;
     j = 1;
-    
+    while(p && j < i) {
+        p = p -> next;
+        j++;
+    }
+    if(!p || j > i) {
+        return ERROR;
+    }
+    e = p -> data;
+    return OK;
+}
+
+//在带头借点的单链线性表L中第i个位置之前插入元素e
+Status ListInsert_L(LinkList &L, int i, ElemType e) {
+    p = L;
+    j = 0;
+    while(p && j < i-1) {
+        p = p -> next;
+        j++;
+    }
+    if(!p && j > i) {
+        return ERROR;
+    }
+    s = (LinkList)malloc(sizeof(LNode));
+    s -> data = e;
+    s -> next = p -> next; //插入L
+    p -> next = s;
+    return OK;
+}
+
+//在带头结点的单链线性表L中，删除第i个元素，并由e返回其值
+Status ListDelete_L(LinkList &L, int i, ElemType &e) {
+    p = L;
+    j = 0;
+    while(p -> next && j < i-1) {
+        p = p -> next;
+        ++j;
+    }
+    if(!(p -> next) || j > i-1) {
+        return ERROR;
+    }
+    q = p -> next;
+    p -> next = q -> next;
+    e = q -> data;
+    free(q);
+    return OK;
+}
+
+//逆位序输入n个元素的值，建立带投结点的单链线性表L
+void CreateList L(LinkList &L,int n) {
+    L = (LinkList)malloc(sizeof(LNode));
+    L -> next = NULL; //先建立一个头结点的单链表
+    for(i=n;i>0;--i) {
+        p = (LinkList)malloc(sizeof(LNode));
+        scanf(& p-> data);
+        p -> next = L -> next;
+        L -> next = p;
+    }
 }
