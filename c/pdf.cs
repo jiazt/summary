@@ -198,3 +198,140 @@ void CreateList L(LinkList &L,int n) {
         L -> next = p;
     }
 }
+
+//归并La和Lb得到新的单链表Lc
+void MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc) {
+    pa = La -> next;
+    pb = Lb -> next;
+    Lc = pc = La;
+    while(pa && pb) {
+        if(pa -> data <= pb -> data) {
+            pc -> next = pa;
+            pc = pa;
+            pa = pa -> next;
+        } else {
+            pc -> next =pb;
+            pc = pb;
+            pb = pb -> next;
+        }
+    }
+    pc -> next = pa ? pa : pb;
+    free(Lb);
+}
+
+// <----- 线性表的静态单链表 ------>
+//用游标（指示器cur）代替指针指示结点在数组中的相对位置
+#define MaxSize 1000
+typedef struct {
+    ElemType data;
+    int cur;
+}component,SLinkList[MaxSize];
+
+//在静态单链线性表L中查找第1个值为e的元素
+int LocateElem_SL(SLinkList S,ElemType e) {
+    i = S[0].cur;
+    while(i && S[i].data != e) {
+        i = S[i].cur;
+    }
+    return i;
+}
+
+//将一维数组space中各分量链成一个备用链表，space[0].cur为头指针。
+void InitSpace_SL(SLinkList &space) {
+    for(i = 0;i < MaxSize;i++) {
+        space[i].cur = i+1;
+    }
+    space[MaxSize-1].cur = 0;
+}
+
+//若备用空间链表非空，则返回分配的结点下标，否则返回0
+int Malloc_SL(SLinkList &space) {
+    i = space[0].cur;
+    if(space[0].cur){
+        space[0].cur = space[i].cur;
+    }
+    return i;
+}
+
+//将下标为k的空闲结点回收到备用链表
+void Free_SL(SLinkList &space, int k) {
+    space[k].cur = space[0].cur;
+    space[0].cur = k;
+}
+
+//（A-B）∪ (B-A) ***
+void Difference(SLinkList &space, int &s) {
+    InitSpace_SL(space);
+    S = Malloc_SL(space);
+    r = S;
+    scanf(m, n);
+    for(j = 1;j <= m;++j) {
+        i = Malloc_SL.SL(space);
+        scanf(space[i].data);
+        space[r].cur = i;
+        r = i;
+    }
+    space[r].cur = 0;
+    for(j = 1;j <= n;++j) {
+        scanf(b);
+        p = S;
+        k = space[S].cur;
+        while(k != space[r].cur && space[k].data != b) {
+            p = k;
+            k = space[k].cur;
+        }
+        if(k == space[r].cur) {
+            i = Malloc_SL(space);
+            space[i].data = b;
+            space[i].cur = space[r].cur;
+            space[r].cur = i;
+        } else {
+            space[p].cur = space[k].cur;
+            Free_SL(space,k);
+            if(r == k) {
+                r = p;
+            }
+        }
+    }
+}
+
+//<---- 双向链表 ------>
+
+// typedef struct DuLNode {
+//     ElemType data;
+//     struct DuLNode *prior;
+//     struct DuLNode *next;
+// }DuLNode,*DuLinkList;
+
+//在带头结点的双链循环线性表L中第i个位置之前插入元素e
+Status ListInsert_Dul(DuLinkList &L, int i, ElemType e) {
+    if(!(p = GetElemP_DuL(L, i))) {
+        return ERROR;
+    }
+    if(!(s = (DuLinkList)malloc(sizeof(DuLNode)))) {
+        return ERROR;
+    }
+    s -> data = e;
+    s -> prior = p -> prior; //先接前，再接后
+    p -> prior -> next = s;
+    s -> next = p;
+    p -> prior = s;
+    return OK;
+}
+
+//删除带头结点的双链循环线性表L的第i个元素，i的合法值为1<=i<=表长
+Status ListDelete_DuL() {
+    if(!(p = GetElemP_DuL(L, i))) {
+        return ERROR;
+    }
+    e = p -> data;
+    p -> prior -> next = p -> next;
+    p -> next -> prior = p -> prior;
+    free(p);
+    return OK;
+}
+
+//在带头结点的单链线性表L的第i个元素之前插入元素e
+Status ListInsert_L(LinkList &L, int i, ElemType e) {
+    
+}
