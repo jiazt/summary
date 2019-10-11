@@ -333,5 +333,41 @@ Status ListDelete_DuL() {
 
 //在带头结点的单链线性表L的第i个元素之前插入元素e
 Status ListInsert_L(LinkList &L, int i, ElemType e) {
-    
+    if(!LocatePos(L, i - 1, h)) { //i值不合法
+        return ERROR;
+    }
+    if(!MakeNode(s, e)) {
+        return ERROR;
+    }
+    InsFirst(h, s);//对于从第i个结点开始的链表，第i-1个
+    return OK;
+}
+
+//归并La和Lb得到新的线性链表Lc
+Status MergeList_L(LinkList &La,LinkList &Lb, LinkList &Lc) {
+    if(!InitList(Lc)) {//存储空间分配失败
+        return ERROR;
+    }
+    ha = GetHead(La);
+    hb = GetHead(Lb);
+    pa = NextPos(La,ha);
+    pb = NextPos(Lb,hb);
+    while(pa && pb) {
+        a = GetCurElem(pa);
+        b = GetCurElem(pb);
+        if((*compare)(a, b) <= 0) {
+            DelFirst(ha, q);
+            Append(Lc, q);
+            pa = NextPos(La, ha);
+        } else {
+            DelFirst(hb, q);
+            Append(Lc, q);
+            pb = NextPos(Lb, hb);
+        }
+    }
+    if(pa) {
+        Append(Lc, pa);
+    } else {
+        Append(Lc, pb)
+    }
 }
