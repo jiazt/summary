@@ -400,5 +400,52 @@ void CreatePolyn(polynomail &P, int m) {
 
 //多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
 void AddPolyn(polynomail &Pa, polynomail &Pb) {
-    ha = GetHead();
+    ha = GetHead(Pa);
+    hb = GetHead(Pb);
+    qa = NextPos(Pa,ha);
+    qb = NextPos(Pb,hb);
+    while(qa && qb) {
+        a = GetCurElem(qa);
+        b = GetCurElem(qb);
+        switch(*cmp(a, b)) {
+            case -1: //多项式
+                ha = qa;
+                qa = NextPos(Pa,qa);
+                break;
+            case 0:
+                sum = a.coef + b.coef;
+                if(sum != 0.0) {
+                    SetCurElem(ha, qa);
+                    ha = qa;
+                } else {
+                    DelFirst(ha, qa);
+                    FreeNode(qa);
+                }
+                DelFirst(hb,qb);
+                FreeNode(qb);
+                qb = NextPos(Pb,hb);
+                qa = NextPos(Pa,ha);
+                break;
+            case 1:
+                DelFirst(hb, qb);
+                InsFirst(ha, qb);
+                qb = NextPos(Pb, hb);
+                ha = NextPos(Pa, ha);
+                break;
+        }
+    }
+    if(!ListEmpty(Pb);
+    Append(Pa,qb);
+    FreeNode(hb);
+}
+
+//顺序栈的定义
+typedef struct {
+    SElemType *base;
+    SElemType *top;
+    int stacksize;
+}SqStack;
+
+Status GetTop() {
+
 }
