@@ -370,4 +370,35 @@ Status MergeList_L(LinkList &La,LinkList &Lb, LinkList &Lc) {
     } else {
         Append(Lc, pb)
     }
+    FreeNode(ha);
+    FreeNode(hb);
+    return OK;
+}
+
+//抽象数据类型polynomial的实现
+typedef struct {
+    float coef;  //系数
+    int expn;    //指数
+}term, ElemType;// term用于本ADT，Elemtype为LinkList的数据对象名
+
+//输入m项的系数和指数，建立表示一元多项式的有序链表P
+void CreatePolyn(polynomail &P, int m) {
+    InitList(P);
+    h = GetHead(P);
+    e.coef = 0.0;
+    e.expn = -1;
+    SetCurElem(h,e);
+    for(i = 1 ; i <= m ; i++) {
+        scanf(e.coef,e.expn);
+        if(!LocateElem(P,e,q,(*cmp))) { //当前链表中不存在该指数项
+            if(MakeNode(s, e)) {
+                InsFirst(q, s); //生成结点并插入链表
+            }
+        }
+    }
+}
+
+//多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
+void AddPolyn(polynomail &Pa, polynomail &Pb) {
+    ha = GetHead();
 }
