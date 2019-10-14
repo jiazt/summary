@@ -440,12 +440,70 @@ void AddPolyn(polynomail &Pa, polynomail &Pb) {
 }
 
 //顺序栈的定义
+#define Stack_Int_Size 100; //存储空间初始化分配
+#define StackIncrement 10;  //存储空间分配增量
 typedef struct {
-    SElemType *base;
+    SElemType *base; //存储空间初始分配量
     SElemType *top;
     int stacksize;
 }SqStack;
 
-Status GetTop() {
-
+//构造一个空栈S
+Status InitStack(SqStack &S) {
+    S.base = (SElemType *)malloc(Stack_Int_Size*sizeof(SElemType));
+    if(!S.base) {
+        exit(OVERFLOW);
+    }
+    S.top = S.base;
+    S.stacksize = Stack_Int_Size;
+    return OK;
 }
+
+//若栈不空，则用e返回S的栈顶元素，并返回OK；否则返回ERROR
+Status GetTop(SqStack S,SElemType &e) {
+    if(S.top == S.base) {
+        return ERROR;
+    }
+    e = *(S.top - 1);
+    return OK;
+}
+
+//插入元素e为新的栈顶元素
+Status Push(SqStack &S, SElemType e) {
+    if(S.top - S.base >= S.stacksize) {//栈满，追加存储空间
+        S.base = (SElemType*)realloc(S.base,(S.stacksize +　StackIncrement)*sizeof(SElemType));
+        if(!S.base) {
+            exit(OVERFLOW);
+        }
+        S.top = S.base + S.stacksize;
+        S.stacksize += StackIncrement;
+    }
+    *S.top++ =e;
+    return OK;
+}
+
+//若栈不空，则删除S的栈顶元素，用e返回其值，并返回
+Status Pop(SqStack &S, SElemType &e) {
+    if(S.top == S.base) {
+        return ERROR;
+    }
+    e = *--S.top;
+    return OK;
+}
+
+//栈的应用
+//对于输入的任意一个非十进制整数，打印输出与其等值的八进制数
+void conversion() {
+    InitStack(S);
+    scanf("%d",N);
+    while(N) {
+        Push(S , N%8);
+        N = N/8;
+    }
+    while(!StackEmpty(s)) {
+        Pop(S,e);
+        printf("%d",e);
+    }
+}
+
+//
