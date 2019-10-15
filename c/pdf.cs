@@ -398,7 +398,7 @@ void CreatePolyn(polynomail &P, int m) {
     }
 }
 
-//多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
+// 多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
 void AddPolyn(polynomail &Pa, polynomail &Pb) {
     ha = GetHead(Pa);
     hb = GetHead(Pb);
@@ -434,8 +434,9 @@ void AddPolyn(polynomail &Pa, polynomail &Pb) {
                 break;
         }
     }
-    if(!ListEmpty(Pb);
-    Append(Pa,qb);
+    if(!ListEmpty(Pb)) {
+        Append(Pa,qb);
+    }
     FreeNode(hb);
 }
 
@@ -506,4 +507,182 @@ void conversion() {
     }
 }
 
-//
+//利用字符栈S，从中端接受一行并传送至调用过程的数据区
+void LineEdit() {
+    InitStack(S);
+    ch = getchar();
+    while(ch != EOF) {
+        while(ch! = EOF && ch != '\n') {
+            switch(ch) {
+                case '#': //仅当栈非空时退栈
+                    Pop(S,c);
+                    break;
+                case '@':
+                    ClearStack(S);
+                default: 
+                    Push(S,ch);
+            }
+            ch = getchar();
+        }
+        ClearStack(S);
+    }
+    DestroyStack(S);
+}
+
+//若迷宫maze中存在从入口start到出口end的通道，则求得一条存放在栈中（从栈底到栈顶），并返回true；否则false
+Status MazePath(MakeType maze, PosType start, PosType end) {
+    InitStack(S);
+    curpos = start;
+    curstep = 1;
+    do {
+        if(Pass(curpos)) {
+            FootPrint(curpos);
+            e = (curstep, curpos, 1);
+            Push(S,e);
+            if(curpos == end) {
+                return TRUE;
+            }
+            curpos = NextPos(curpos, 1);
+            curstep++;
+        } else {
+            if(!StackEmpty(S)) {
+                Pop(S,e);
+                while(e.di === 4 && !StackEmpty(S)) {
+                    MarkPrint(e.seat);
+                    Pop(S,e);
+                }
+                if(e,di < 4) {
+                    e.di ++;
+                    Push(S, e);
+                }
+            }
+        }
+    } while(!StackEmpty(S));
+    return FlASE;
+}
+
+//算术表达式求值的算符优先算法，设OPTR和OPND分别为运算符栈和运算数栈
+OperandType EvaluateExpression() {
+    InitStack(OPTR);
+    Push(OPTR,'#');
+    InitStack(OPND);
+    c = getchar();
+    while(c != '#' || GetTop(OPTN, c) != '#') {
+        if(!In(c, OP)) { //不是运算符则进栈
+            Push(OPND , c);
+            c = getchar();
+        } else {
+            switch(Precede(GetTop(OPTR),c)) {
+                case '<': //栈顶元素优先级低
+                    Push(OPTR, c);
+                    c = getchar();
+                    break;
+                case '=': //脱括号并接收下一字符
+                    Pop(OPTR, x);
+                    c = getchar();
+                    break;
+                case '>': //退栈并将运算结果入栈
+                    Pop(OPTR, theta);
+                    Pop(OPND, b);
+                    Pop(OPND, a);
+                    Push(OPND, Operate(a, theta, b));
+                    break;
+            } 
+        }
+    }
+    return GetTop(OPND);
+}
+
+//汉诺塔，将塔座x上按直径由小到大且自上而下编号1至n个原盘规则搬到
+//塔座z上，y可作辅助塔座。
+//搬动操作move(x, n, z)可定义为(c是初值为0的全局变量，对搬动计数)
+void hanoi(int n, char x, char y, char z) {
+    if(n === 1) {
+        move(x, 1, z); //将编号为1的圆盘从x移动到z
+    } else {
+        hanoi(n-1, x, z, y);//将x上编号为1至n-1的圆盘移到y，z作铺助塔
+        move(x, n ,z);      //将编号为n的圆盘从x移到z
+        hanoi(n-1, y, x, z);//将y上编号为1至n-1的圆盘移到z
+    }
+}
+
+// <----- 单链队列  队列的链式存储结构 ------>
+// typedef struct QNode {
+//     QElemType data;
+//     struct QNode *next;
+// }QNode, *QueuePtr;
+typedef struct {
+    QueuePtr front;  //队头指针
+    QueuePtr rear;
+}LinkQueue;
+
+//构造一个空队列Q
+Status InitQueue(LinkQueue &Q) {
+    Q.front = Q.rear = (QueuePtr)malloc(sizeof(QNode));
+    if(!Q.front) {
+        exit(OVERFLOW);//存储分配失败
+    }
+    Q.front -> next = NULL;
+    return OK;
+}
+
+//销毁队列Q
+Status DestroyQueue(LinkQueue &Q) {
+    while(Q.front) {
+        Q.rear = Q.front -> next;
+        free(Q.front);
+        Q.front = Q.rear;
+    }
+    return OK;
+}
+
+//插入元素e为Q的新的队列元素
+Status EnQueue(LinkQueue &Q, QElemType e) {
+    p = (QueuePtr)malloc(sizeof(QNode));
+    if(!p) {
+        exit(OVERFLOW);   //存储分配失败
+    }
+    p -> data = e;
+    p -> next = NULL;
+    Q.rear -> next = p;
+    Q.rear = p;
+    return OK;
+}
+
+//若队列不空，则删除Q的队头元素，用e返回其值，并返回OK
+Status DeQueue(LinkQueue &Q, QElemType &e) {
+    if(Q.front == Q.rear) {
+        return ERROR;
+    }
+    p = Q.front -> next;
+    e = p -> data;
+    Q.front -> next = p -> next;
+    if(Q.rear == p) {
+        Q.rear = Q.front;
+    }
+    free(p);
+    return OK;
+}
+
+//<------ 循环队列 ------>
+#define MaxQSize 100
+typedef struct {
+    QElemType *base;
+    int front;
+    int rear;
+}SqQueue;
+
+//构造一个空队列Q
+Status InitQueue(SqQueue &Q) {
+    Q.base = (QElemType*)malloc(MaxQSize*sizeof(QElemType));
+    if(!Q.base) {
+        exit(OVERFLOW);
+    } 
+    Q.front = Q.rear = 0;
+    return OK;
+}
+
+//返回Q的元素个数，即队列的长度
+int QuereLength(SqQueue Q) {
+    return(Q.rear - Q.front + MaxQSize) % MaxQSize;
+}
