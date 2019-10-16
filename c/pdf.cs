@@ -667,9 +667,9 @@ Status DeQueue(LinkQueue &Q, QElemType &e) {
 //<------ 循环队列 ------>
 #define MaxQSize 100
 typedef struct {
-    QElemType *base;
-    int front;
-    int rear;
+    QElemType *base; //初始化的动态分配储存空间
+    int front;       //头指针，若队列不空，指向队列头元素
+    int rear;        //尾指针，若队列不空，指向队列尾元素的下一个位置
 }SqQueue;
 
 //构造一个空队列Q
@@ -686,3 +686,47 @@ Status InitQueue(SqQueue &Q) {
 int QuereLength(SqQueue Q) {
     return(Q.rear - Q.front + MaxQSize) % MaxQSize;
 }
+
+//插入元素e为Q的新队尾元素
+Status EnQueue(SqQueue &Q, QElemType e) {
+    if((Q.rear + 1) % MaxQSize == Q.front) {
+        return ERROR;
+    }
+    Q.base[Q.rear] = e;
+    Q.rear = (Q.rear + 1) % MaxQSize;
+    return OK;
+}
+
+//若队列不空，则删除Q的队头元素，用e返回其值，并返回OK
+Status DeQueue(SqQueue & Q, QElemType &E) {
+    if(Q.front == Q.rear) {
+        return ERROR;
+    }
+    e = Q.base[Q.front];
+    Q.front = (Q.front + 1) % MaxQSize;
+    return OK;
+}
+
+//银行业务模拟，统计一天内客户在银行逗留的平均时间
+void Bank_Simulation(int CloseTime) {
+    OpenForDay();
+    while(MoreEvent) {
+        EventDrived(OccurTime, EventType); //事件驱动
+        switch(EventType) {
+            case 'A': 
+                CustomerArrived();  //处理客户到达事件
+                break;
+            case 'D':
+                CustomerDeparture(); //处理客户离开事件
+                break;
+            default: 
+                Invalid();
+        }
+    }
+    CloseForDay()  //计算平均逗留时间
+}
+
+//二叉树的存储结构
+#define Max_Tree_Size 100;
+typedef TElemType SqBiTree[Max_Tree_Size];
+SqBiTree bt;
