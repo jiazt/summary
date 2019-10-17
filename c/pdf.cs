@@ -730,3 +730,64 @@ void Bank_Simulation(int CloseTime) {
 #define Max_Tree_Size 100;
 typedef TElemType SqBiTree[Max_Tree_Size];
 SqBiTree bt;
+
+//先序遍历二叉树T的递归算法，对每个数据元素调用方式Visit
+Status PreOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
+    // Status PrintElement(TElemType e) {
+    //     printf(e);
+    //     return OK;
+    // }
+    if(T) {
+        if(Visit(T -> data)) {
+            if(PreOrderTraverse(T -> lchild.Visit)) {
+                if(PreOrderTraverse(T -> rchild.Visit)) {
+                    return OK;
+                }
+            }
+        }
+        return ERROR;
+    } else {
+        return OK;
+    }
+}
+
+//采用二叉链表存储结构，Visit是对数据元素操作的应用函数
+Status InOrderTraverse(BiTree T.Status(*Visit)(TElemType e)) {
+    InitStack(S);
+    Push(S,T);
+    while(!StackEmpty(S)) {
+        while(GetTop(S,p) && p) {
+            Push(S, p -> lchild); //向左走到尽头
+        }
+        Pop(S, p);                //空指针退栈
+        if(!StackEmpty(S)) {      //访问结点，向右一步
+            Pop(S, p);
+            if(!Visit(p -> data)) {
+                return ERROR;
+            }
+            Push(S, p -> rchild);
+        }
+    }
+    return OK;
+}
+
+//采用二叉链表存储结构，visit是对数据元素操作的应用函数
+//中序遍历二叉树T的非递归算法，对每个元素调用函数Visit
+Status InOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
+    IninStack(S);
+    p = T;
+    while(p || !StackEmpty(S)) {
+        if(p) {
+            Push(S, p);
+            p = p -> lchild;   //根指针进栈，遍历左子树
+        } else {               //根指针退栈，访问根结点，遍历右子树
+            Pop(S, p);
+            if(!Visit(p -> data)) {
+                return ERROR;
+            }
+            p = p -> rchild;
+        }
+    }
+    return OK;
+}
+

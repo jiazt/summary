@@ -14,6 +14,13 @@ DROP TABLE - 删除表
 CREATE INDEX - 创建索引（搜索键）
 DROP INDEX - 删除索引
 
+##通配符
+%           替换一个或多个字符
+_           仅替换一个字符
+[charlist]  字符列中的任何单一字符
+[^charlist]/[!charlist] 不在字符列中的任何单一字符
+
+
 
 ## 第五章 
 ### 5.1
