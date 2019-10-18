@@ -39,4 +39,24 @@ SELECT * FROM Persons WHERE City NOT LIKE '%hai%'
 SELECT * FROM Persons WHERE LastName LIKE 'C_r_er'
 SELECT * FROM Persons WHERE City LIKE '[ALN]%' // "Persons" 表中选取居住的城市以 "A" 或 "L" 或 "N" 开头的人
 
-//
+//IN 操作符允许我们在 WHERE 子句中规定多个值
+SELECT * FROM Persons WHERE LastName IN ('Adams','Carter')
+
+//BETWEEN 操作符在 WHERE 子句中使用，作用是选取介于两个值之间的数据范围。
+介于 "Adams"（包括）和 "Carter"（不包括）之间的人
+SELECT * FROM Persons WHERE LastName BETWEEN 'Adams' AND 'Carter'
+SELECT * FROM Persons WHERE LastName NOT BETWEEN 'Adams' AND 'Carter'
+
+Alias 实例: 使用表名称别名
+SELECT po.OrderID, p.LastName, p.FirstName
+FROM Persons AS p, Product_Orders AS po
+WHERE p.LastName='Adams' AND p.FirstName='John'
+如果不用别名：
+SELECT Product_Orders.OrderID, Persons.LastName, Persons.FirstName
+FROM Persons, Product_Orders
+WHERE Persons.LastName='Adams' AND Persons.FirstName='John'
+别名把key重新命名
+SELECT LastName AS Family, FirstName AS Name
+FROM Persons
+
+//Join 和 Key

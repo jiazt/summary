@@ -791,3 +791,47 @@ Status InOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
     return OK;
 }
 
+//按先序次序输入二叉树中结点的值，空格字符表示空树
+Status CreateBiTree(BiTree &T) {
+    scanf(&ch);
+    if(ch == '') {
+        T = null;
+    } else {
+        if(!(T = (BiTNode * )malloc(sizeof(BiTNode)))) {
+            exit(OVERFLOW);
+            T -> data = ch;
+            CreateBiTree(T -> lchild);
+            CreateBiTree(T -> rchild);
+        }
+    }
+    return OK;
+}
+
+//<-----二叉树的二叉线索存储表示------>
+typedef enum PointerTag { Link, Thread };
+typedef struct BiTrNode {
+    TElemType data,
+    struct BiTreNode *lchild, *rchild;
+    PointerTag LTag, Rtag;
+}BiThrNode, *BiThrTree;
+
+//中序遍历二叉线索树T的非递归算法，对每个数据元素调用函数Visit
+Status InOrderTraverse_Thr(BiThrTree T.Status(*Visit)(TElemType e)) {
+    p = T -> lchild;   //p指向根结点
+    while(p != T) {    //空树或遍历结束时，p == T
+        while(p -> LTag == Link) {
+            p = p -> lchild;
+        }
+        if(!Visit(p -> data)) {
+            return ERROR;
+        }
+        while(p -> RTag == Thread && p -> rchild != T) {
+            p = p -> rchild;
+            Visit(p -> data);
+        }
+        p = p -> rchild;
+    }
+    return OK;
+}
+
+//中序遍历二叉树T，并将其中序线索化，Thrt指向头结点
