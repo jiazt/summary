@@ -834,4 +834,25 @@ Status InOrderTraverse_Thr(BiThrTree T.Status(*Visit)(TElemType e)) {
     return OK;
 }
 
-//中序遍历二叉树T，并将其中序线索化，Thrt指向头结点
+//算法6.5 中序遍历二叉树T，并将其中序线索化，Thrt指向头结点
+Status InOrderThreading(BiThrTree &Thrt, BiThrTree T) {
+    if(!(Thrt = (BiThrTree)malloc(sizeof(BiThrTree)))) {
+        exit(OVERFLOW);
+    }
+    Thrt -> LTag = Link;   //建头结点
+    Thrt -> RTag = Thread;
+    Thrt -> rchild = Thrt;  //右指针回指
+    if(!T) {
+        Thrt -> lchild = Thrt; //若二叉树空，则左指针回指向
+    } else {
+        Thrt -> lchild = T;
+        pre = Thrt;
+        InThreading(T);  //中序遍历进行中序线索化
+        pre -> rchild = Thrt; //最后一个结点线索化
+        pre -> RTag = Thread;
+        Thrt -> rchild = pre;
+    }
+    return OK;
+}
+
+//

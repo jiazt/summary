@@ -1,10 +1,18 @@
 ﻿Unit 01
 请用书签盖住释义进行自测，每天见证词汇量剧增的奇迹
 ★代表形近词，※代表补充词汇
-state n. 状态，情况；国；州
+#state 
+n. 状态，情况；国；州
 v. 陈述；说明；规定
-★statute n. 法令；法规
-★manifestation n. 显示，表现；示威运动
+
+#statute 
+n. 法令；法规
+Penalties are laid down in the statute .
+法规中有关于惩罚措施的规定。
+
+#manifestation 
+n. 显示，表现；示威运动
+
 ★statistic n. 统计数值
 adj. 统计的；统计学的
 ★statistical adj. 统计的；统计学的

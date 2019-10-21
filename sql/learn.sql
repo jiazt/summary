@@ -47,16 +47,38 @@ SELECT * FROM Persons WHERE LastName IN ('Adams','Carter')
 SELECT * FROM Persons WHERE LastName BETWEEN 'Adams' AND 'Carter'
 SELECT * FROM Persons WHERE LastName NOT BETWEEN 'Adams' AND 'Carter'
 
-Alias 实例: 使用表名称别名
+-- Alias 实例: 使用表名称别名
 SELECT po.OrderID, p.LastName, p.FirstName
 FROM Persons AS p, Product_Orders AS po
 WHERE p.LastName='Adams' AND p.FirstName='John'
-如果不用别名：
+-- 如果不用别名：
 SELECT Product_Orders.OrderID, Persons.LastName, Persons.FirstName
 FROM Persons, Product_Orders
 WHERE Persons.LastName='Adams' AND Persons.FirstName='John'
-别名把key重新命名
+-- 别名把key重新命名
 SELECT LastName AS Family, FirstName AS Name
 FROM Persons
 
-//Join 和 Key
+-- Join 和 Key
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+INNER JOIN Orders
+ON Persons.Id_P = Orders.Id_P
+ORDER BY Persons.LastName
+-- 如果不用Join
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons, Orders
+WHERE Persons.Id_P = Orders.Id_P 
+
+-- LEFT JOIN 
+-- 关键字会从左表 (table_name1) 那里返回所有的行，
+-- !即使在右表 (table_name2) 中没有匹配的行
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+LEFT JOIN Orders
+ON Persons.Id_P=Orders.Id_P
+ORDER BY Persons.LastName
+
+-- RIGHT JOIN 
+-- 关键字会右表 (table_name2) 那里返回所有的行，
+-- !!!即使在左表 (table_name1) 中没有匹配的行
