@@ -916,5 +916,24 @@ int find_mfset(MFSet S, int i) {
 
 //算法6.8 求并集Si U Sj
 Status merge_mfset(MFSet &S, int i, int j) {
-    //S.nodes[i]和S.nodes[j]分别为S互不相交
+    //S.nodes[i]和S.nodes[j]分别为S互不相交的两个子集Si和Sj的根结点
+    if(i < 1 || i > S.n || j < 1 || j > S.n) {
+        return ERROR;
+    }
+    S.nodes[i].parent = j;
+    return OK;
+}
+
+//6.9求并集
+void mix_mfset(MFSet &S, int i, int j) {
+     if(i < 1 || i > S.n || j < 1 || j > S.n) {
+        return ERROR;
+    }
+    if(S.nodes[j].parent > S.nodes[j].parent) {
+        S.nodes[j].parent += S.nodes[i].parent;
+        S.nodes[i].parent = j;
+    } else {
+        S.nodes[i].parent += S.nodes[j].parent;
+        S.nodes[j].parent = i;
+    }
 }

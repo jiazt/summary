@@ -20,29 +20,29 @@ SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
 INSERT INTO Persons VALUES ('Gates', 'Bill', 'Xuanwumen 10', 'Beijing')
 INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
 
-//UPDATE 更新语句
+-- UPDATE 更新语句
 UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson'
 UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson'
 
-//DELETE 删除语句
+-- DELETE 删除语句
 DELETE FROM Person WHERE LastName = 'Wilson' 
 DELETE FROM table_name
 DELETE * FROM table_name
 
-//TOP 语句
+-- TOP 语句
 SELECT TOP 3 * FROM Persons  //去前三个
 SELECT TOP 50 PERCENT * FROM Person //选取前 50% 的记录。
 
-//LIKE 操作符 模糊匹配用
+-- LIKE 操作符 模糊匹配用
 SELECT * FROM Persons WHERE City LIKE '%hai%'
 SELECT * FROM Persons WHERE City NOT LIKE '%hai%'
 SELECT * FROM Persons WHERE LastName LIKE 'C_r_er'
 SELECT * FROM Persons WHERE City LIKE '[ALN]%' // "Persons" 表中选取居住的城市以 "A" 或 "L" 或 "N" 开头的人
 
-//IN 操作符允许我们在 WHERE 子句中规定多个值
+-- IN 操作符允许我们在 WHERE 子句中规定多个值
 SELECT * FROM Persons WHERE LastName IN ('Adams','Carter')
 
-//BETWEEN 操作符在 WHERE 子句中使用，作用是选取介于两个值之间的数据范围。
+-- BETWEEN 操作符在 WHERE 子句中使用，作用是选取介于两个值之间的数据范围。
 介于 "Adams"（包括）和 "Carter"（不包括）之间的人
 SELECT * FROM Persons WHERE LastName BETWEEN 'Adams' AND 'Carter'
 SELECT * FROM Persons WHERE LastName NOT BETWEEN 'Adams' AND 'Carter'
@@ -98,4 +98,26 @@ SELECT E_Name FROM Employees_USA
 SELECT E_Name FROM Employees_China
 UNION ALL
 SELECT E_Name FROM Employees_USA
+
+-- SELECT INTO 语句可用于创建表的备份复件
+-- 下面的例子会制作 "Persons" 表的备份复件：
+SELECT *
+INTO Persons_backup
+FROM Persons
+
+-- IN 子句可用于向另一个数据库中拷贝表：
+SELECT *
+INTO Persons IN 'Backup.mdb'
+FROM Persons
+
+-- 创建一个名为 "Persons_Order_Backup" 的新表，
+-- 其中包含了从 Persons 和 Orders 两个表中取得的信息
+SELECT Persons.LastName,Orders.OrderNo
+INTO Persons_Order_Backup
+FROM Persons
+INNER JOIN Orders
+ON Persons.Id_P=Orders.Id_P
+
+-- CREATE DATABASE 创建数据库语句
+CREATE DATABASE my_db
 
