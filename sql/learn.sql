@@ -3,20 +3,20 @@ SELECT LastName,FirstName FROM Persons
 
 SELECT * FROM Persons
 
-//关键词 DISTINCT 用于返回唯一不同的值
+-- 关键词 DISTINCT 用于返回唯一不同的值
 SELECT DISTINCT Company FROM Orders 
 
 SELECT * FROM Persons WHERE City='Beijing'
 SELECT * FROM Persons WHERE Year>1965
 
-//AND OR 和 ORDER BY 的应用  DESC 降序 ASC 升序
+-- AND OR 和 ORDER BY 的应用  DESC 降序 ASC 升序
 SELECT * FROM Persons WHERE FirstName='Thomas' AND LastName='Carter'
 SELECT * FROM Persons WHERE firstname='Thomas' OR lastname='Carter'
 SELECT * FROM Persons WHERE (FirstName='Thomas' OR FirstName='William') AND LastName='Carter'
 SELECT Company, OrderNumber FROM Orders ORDER BY Company, OrderNumber
 SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
 
-//INSERT INTO 插入语句
+-- INSERT INTO 插入语句
 INSERT INTO Persons VALUES ('Gates', 'Bill', 'Xuanwumen 10', 'Beijing')
 INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
 
@@ -82,3 +82,20 @@ ORDER BY Persons.LastName
 -- RIGHT JOIN 
 -- 关键字会右表 (table_name2) 那里返回所有的行，
 -- !!!即使在左表 (table_name1) 中没有匹配的行
+
+-- 只要其中某个表存在匹配，FULL JOIN 关键字就会返回行。
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+FULL JOIN Orders
+ON Persons.Id_P=Orders.Id_P
+ORDER BY Persons.LastName
+
+-- UNION 操作符用于合并两个或多个 SELECT 语句的结果集
+SELECT E_Name FROM Employees_China
+UNION
+SELECT E_Name FROM Employees_USA
+-- UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL
+SELECT E_Name FROM Employees_China
+UNION ALL
+SELECT E_Name FROM Employees_USA
+

@@ -855,4 +855,66 @@ Status InOrderThreading(BiThrTree &Thrt, BiThrTree T) {
     return OK;
 }
 
-//
+//算法6.6
+void InThreading(BiThrTree p) {
+    if(p) {
+        InThreading(p -> lchild); //左子树线索化
+        if(!p -> lchild) { //前驱线索
+            p -> LTag = Thread;
+            p -> lchild = pre;
+        } 
+        if(!pre -> rchild) { //后继线索
+            pre -> RTag = Thread;
+            pre -> rchild = p;
+        }
+        pre = p;
+        InThreading(p -> rchild);
+    }
+}
+
+//<------- 树和森林  ---------》
+#define Max_Tree_Size 100
+typedef struct PTNode { //结点机构
+    TElemType data;
+    int parent;   //双亲位置域
+}PTNode;
+typedef struct { //树结构
+    PTNode nodes[Max_Tree_Size];
+    int r,n;  //根的位置和结点树
+}PTree;
+
+//----树的孩子链表存储表示-------
+// typedef struct CTNode {
+//     int child;
+//     struct CTNode *next;
+// }*ChildPtr;
+typedef struct {
+    TElemType datal
+    ChildPtr firstchild;  //孩子链表头指针
+}CTBox;
+typedef struct {
+    CTBox node[Max_Tree_Size];
+    int n,r;   //结点数和根的位置
+}CTree;
+
+// -----树的二叉链表（孩子-兄弟）存储表示------
+// typedef struct CSNode {
+//     ElemType data;
+//     struct CSNode *firstchild, *nextsibling;
+// }CSNode, *CSTree;
+
+//----ADT MFSet 的树的双亲表存储表示------
+typedef PTree MFSet;
+int find_mfset(MFSet S, int i) {
+    //找集合S中i所在子集的根
+    if(i < 1 || i > S.n) {
+        return -1;
+    }
+    for(j = i ; S.node[j].parent > 0 ; j = S.node[j].parent);
+    return j;
+}
+
+//算法6.8 求并集Si U Sj
+Status merge_mfset(MFSet &S, int i, int j) {
+    //S.nodes[i]和S.nodes[j]分别为S互不相交
+}

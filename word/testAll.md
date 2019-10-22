@@ -12,20 +12,44 @@ Penalties are laid down in the statute .
 
 #manifestation 
 n. 显示，表现；示威运动
+Different animals in the colony had different manifestations of the disease.
+在这一群体里，这种疾病在不同的动物身上有着不同的表现。
 
-★statistic n. 统计数值
+#statistic 
+n. 统计数值
 adj. 统计的；统计学的
-★statistical adj. 统计的；统计学的
-★stationary adj. 固定的；静止的，不动的
-★statement n. (正式或明确的口头或书面)
+
+#statistical 
+adj. 统计的；统计学的
+
+#stationary 
+adj. 固定的；静止的，不动的
+Stationary cars in traffic jams(拥堵) cause a great deal of pollution.
+交通堵塞中静止不动的汽车产生了大量污染。
+
+#statement 
+n. (正式或明确的口头或书面)
 陈述，声明；(意见或观点的)表
 现，表达
-★understatement n. 保守陈述；不充分的
+
+#understatement 
+n. 保守陈述；不充分的
 陈述；轻描淡写
-★overstate v. 夸张，夸大地叙述
-★statesman n. 政治家
-★estate n. 房地产；身份；财产
-★devastate v. 毁灭，毁坏
+
+#overstate 
+v. 夸张，夸大地叙述
+It is possible to overstate the benefits of stabilization. 
+稳定性带来的好处有可能被夸大。
+
+#statesman 
+n. 政治家
+
+#estate n. 房地产；身份；财产
+Her estate was left to her daughter.
+她把遗产留给了女儿
+
+#devastate 
+v. 毁灭，毁坏
 ★devastating adj. 毁灭性的；极具破坏力的
 ★workstation n. 工作台
 ★status n. 地位；情形；状况；重要身份
