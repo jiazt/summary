@@ -50,9 +50,16 @@ Her estate was left to her daughter.
 
 #devastate 
 v. 毁灭，毁坏
-★devastating adj. 毁灭性的；极具破坏力的
-★workstation n. 工作台
-★status n. 地位；情形；状况；重要身份
+
+#devastating 
+adj. 毁灭性的；极具破坏力的
+
+#workstation 
+n. 工作台
+
+#status 
+n. 地位；情形；状况；重要身份
+
 ※assert v. 坚称；断言；表明
 ※affirm v. 断言；肯定；证实
 public adj. 公众的；公共的；公开的

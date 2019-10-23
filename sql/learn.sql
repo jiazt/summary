@@ -121,3 +121,13 @@ ON Persons.Id_P=Orders.Id_P
 -- CREATE DATABASE 创建数据库语句
 CREATE DATABASE my_db
 
+-- CREATE TABLE 语句用于创建数据库中的表
+CREATE TABLE Persons
+(
+    Id_P int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+)
+

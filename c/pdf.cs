@@ -937,3 +937,26 @@ void mix_mfset(MFSet &S, int i, int j) {
         S.nodes[j].parent = i;
     }
 }
+
+//6.10 确定i所在子集，
+// 并将从i至根路径上所有结点变成根的孩子结点。
+int fix_mfset(MFSet &S,int i) {
+    if(i < 1 || i > S.n) {
+        return -1;
+    }
+    for(j = i;S.nodes[j].parent > 0; j = S.nodes[j].parent);
+    for(k = i;k != j;k = t) {
+        t = S.nodes[k].parent;
+        S.nodes[k].parent = j;
+    }
+    return j;
+}
+
+//----哈夫曼树和哈夫曼编码的存储表示------
+typedef struct {
+    unsigned int weight;
+    unsigned int parent, lchild, rchild
+} HTNode, *HuffmanTree;
+typedef char * *HuffmanTree
+
+void HuffmanCoding()
