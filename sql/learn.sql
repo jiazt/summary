@@ -131,3 +131,26 @@ CREATE TABLE Persons
     City varchar(255)
 )
 
+-- NOT NULL 约束强制列不接受 NULL 值
+CREATE TABLE Persons
+(
+    Id_P int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+)
+
+-- UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证
+CREATE TABLE Persons
+(
+    Id_P int NOT NULL UNIQUE,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+)
+-- 当表已被创建时，如需在 "Id_P" 列创建 UNIQUE 约束
+ALTER TABLE Persons
+ADD UNIQUE (Id_P)
+

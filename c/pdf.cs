@@ -952,11 +952,61 @@ int fix_mfset(MFSet &S,int i) {
     return j;
 }
 
-//----哈夫曼树和哈夫曼编码的存储表示------
-typedef struct {
-    unsigned int weight;
-    unsigned int parent, lchild, rchild
-} HTNode, *HuffmanTree;
-typedef char * *HuffmanTree
+//求含n个元素的集合A的幂集p(A)。进入函数时已对A中前i-1个元素作了取舍处理
+//现从第i个元素起进行取舍处理。若i>n,则求得幂集的一个元素，并输出之
+//初始调用：PowerSet(1 , n)
+void PowerSet(int i, int n) {
+    if(i > n) // 输出幂集的一个元素
+    else {
+        PowerSet(i + 1, n); //取第一个元素
+        PowerSet(i + 1, n); //舍第一个元素
+    }
+}
 
-void HuffmanCoding()
+//线性表A表示集合A，线性表B表示幂集P(A)的一个元素
+//局部量k为进入函数时表B的当前长度。第一次调用函数时，B为空表，i = 1
+void GetPowerSet(int i, List A, List &B) {
+    if(i > ListLength(A)) {
+        Output(B);
+    } else {
+        GetElem(A, i, x);
+        k = ListLength(B);
+        ListInsert(B, k+1 , x);
+        GetPowerSet(i+1, A, B);
+        ListDelete(B, k+1 ,x);
+        GetPowerSet(i+1, A, B)
+    }
+}
+
+//进入本函数时，在n X n棋盘前i-1行已放置了互不攻击的i-1个棋子
+//现从第i行起继续为后续棋子选择适合位置
+//当i>n时，求得一个合法布局，输出之
+void Trial(int i, int n) {
+    if(i >　n) //输出棋盘当前布局 n为4即为4皇后问题
+    else {
+        for(j = 1; j <= n ; ++j) {
+            if(当前布局合法) {
+                Trial(i+1 ,n);
+            }
+        }
+    }
+}
+
+// ---图---
+
+
+
+// ---查询---
+//静态查找的顺序存储结构
+typedef struct {
+    ElemType *elem;
+    int length;
+}SSTable;
+
+//在顺序表ST中顺序查找其关键字等于key的数据元素。若找到，则函数值为
+//该元素在表中的位置，否则为0
+int Search_Seq(SSTable ST, KeyType Key) {
+    ST.elem[0].key = key; //"哨兵"
+    for(i = ST.length; !EQ(ST.elem[i].key, key) ; --i);
+    return i;
+}
