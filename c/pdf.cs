@@ -1005,8 +1005,70 @@ typedef struct {
 
 //在顺序表ST中顺序查找其关键字等于key的数据元素。若找到，则函数值为
 //该元素在表中的位置，否则为0
+//顺序查询
 int Search_Seq(SSTable ST, KeyType Key) {
     ST.elem[0].key = key; //"哨兵"
     for(i = ST.length; !EQ(ST.elem[i].key, key) ; --i);
     return i;
 }
+
+//在有序表ST中折半查找其关键字等于key的数据元素。
+//该元素在表中的位置，否则为0
+//折半查找
+int Search_Bin(SSTable ST, KeyType key) {
+    low = 1;
+    high = ST.length;
+    while(low <= high) {
+        mid = (low + high) / 2;
+        if(EQ(key, ST.elem[mid].key)) {
+            return mid;
+        } else if(LT(key, ST.elem[mid].key)) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return 0;
+}
+
+//---哈希表存储结构---
+int hashsize[] = {998,...};
+typedef struct {
+    ElemType *elem;
+    int count;
+    int sizeindex;
+}HashTable;
+
+//在开放定址哈希表H中查找关键码为K的元素，若查找成功，以p指示
+//元素在表中位置返回SUCCESS；否则，以p指示插入位置，并返回UNSUCCESS
+//c用以计冲突次数，其初值置0,拱建表插入时参考
+Status SearchHash(HashTable H, KeyType K, int &p, int &c) {
+    p = Hash(K);   //求得哈希地址
+    while(H.elem[p].key != NULLKEY &&  //该位置中填有记录
+    !EQ(K,H.elem[p].key)) {   //并且关键字不想等
+        collision(p, ++c)  //求得下一探查地址p
+    }
+    if(EQ(K, H.elem[p].key)) {
+        return SUCCESS;
+    } else {
+        return UNSUCCESS;
+    }
+}
+
+//查找不成功时插入数据元素e到开放定址哈希表H中，并返回OK
+//若冲突次数过大，则重建哈希表
+Status InsertHash(HashTable &H, ElemType e) {
+    c = 0;
+    if(SearchHash(H, e.key, p, c)) {
+        return DUPLICATE;
+    } else if(c <　hashsize[H.sizeindex]/2) {
+        H.elem[p] = e;
+        ++H.count;
+        return OK;
+    } else {
+        RecreateHashTable(H);
+        return UNSUCCESS;
+    }
+}
+
+// ---排序---

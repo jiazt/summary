@@ -50,6 +50,8 @@ Her estate was left to her daughter.
 
 #devastate 
 v. 毁灭，毁坏
+A few days before, a fire had devastated large parts of Windsor Castle. 
+几天前，温莎城堡的大部分被一场大火烧毁。
 
 #devastating 
 adj. 毁灭性的；极具破坏力的
@@ -60,8 +62,15 @@ n. 工作台
 #status 
 n. 地位；情形；状况；重要身份
 
-※assert v. 坚称；断言；表明
-※affirm v. 断言；肯定；证实
+#assert 
+v. 坚称；断言；表明
+She continued to assert that she was innocent.
+她仍然坚称自己无辜。
+
+#affirm 
+v. 断言；肯定；证实
+
+
 public adj. 公众的；公共的；公开的
 n. 公众，民众
 ★publication n. 出版；发行；出版物；发行
