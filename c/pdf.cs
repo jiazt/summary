@@ -1072,3 +1072,4 @@ Status InsertHash(HashTable &H, ElemType e) {
 }
 
 // ---排序---
+//对顺序表L作直接插入排序

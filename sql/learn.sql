@@ -154,3 +154,16 @@ CREATE TABLE Persons
 ALTER TABLE Persons
 ADD UNIQUE (Id_P)
 
+-- 如需撤销 UNIQUE 约束，请使用下面的 SQL
+ALTER TABLE Persons
+DROP CONSTRAINT uc_PersonID
+
+-- 表创建时在 "Id_P" 列创建 PRIMARY KEY 约束
+CREATE TABLE Persons
+(
+    Id_P int NOT NULL PRIMARY KEY,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+)
