@@ -70,15 +70,21 @@ She continued to assert that she was innocent.
 #affirm 
 v. 断言；肯定；证实
 
-
-public adj. 公众的；公共的；公开的
+#public 
+adj. 公众的；公共的；公开的
 n. 公众，民众
-★publication n. 出版；发行；出版物；发行
-物；公布；发布
-★republican adj. 共和国的；共和政体的；(美
-国)共和党的；支持共和党的
+
+#publication 
+n. 出版；发行；出版物；发行物；公布；发布
+
+#republican 
+adj. 共和国的；共和政体的；(美国)共和党的；支持共和党的
 n. 拥护共和政体者；共和主义者
-★publicity n. 公众信息；宣传；公之于众的状况
+
+
+#publicity 
+n. 公众信息；宣传；公之于众的状况
+
 ★publicized adj. 公开的
 ★publicly adv. 公共地；公开地；公众地
 ※in public 公开地，当众

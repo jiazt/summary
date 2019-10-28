@@ -167,3 +167,18 @@ CREATE TABLE Persons
     Address varchar(255),
     City varchar(255)
 )
+-- 添加主键
+ALTER TABLE Persons
+ADD PRIMARY KEY (Id_P)
+-- 撤销主键
+ALTER TABLE Persons
+DROP CONSTRAINT pk_PersonID
+
+-- 一个表中的 FOREIGN KEY 指向另一个表中的 PRIMARY KEY
+CREATE TABLE Orders
+(
+    Id_O int NOT NULL PRIMARY KEY,
+    OrderNo int NOT NULL,
+    Id_P int FOREIGN KEY REFERENCES Persons(Id_P)
+)
+

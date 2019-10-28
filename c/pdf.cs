@@ -1072,4 +1072,52 @@ Status InsertHash(HashTable &H, ElemType e) {
 }
 
 // ---排序---
+#define MaxSize 20;
+typedef int KeyType;
+typedef struct {
+    KeyType key;
+    InfoType otherinfo;
+}RedType;
+typedef struct {
+    RedType r[MaxSize + 1]; //r[0]闲置或哨兵单元
+    int length;
+}SqList;
+
 //对顺序表L作直接插入排序
+void InsertSort(SqList &L) {
+    for(i = 2; i<=L.length; ++i) {
+        if(LT(L.r[i].key, L.r[i-1].key)) { //‘<’
+            L.r[0] = L.r[i];
+            L.r[i] = L.r[i - 1];
+            for(j = i-2 ; LT(L.r[0].key, L.r[i].key) ; --j) {
+                L.r[j+1] = L.r[j];
+            }
+            L.r[j + 1] = L.r[0];
+        }
+    }
+}
+
+//对顺序表L作折半插入排序
+void BInsertSort(SqList &L) {
+    for(i = 2; i <= L.length; ++i) {
+        L.r[0] = L.r[i];
+        low = 1;
+        high = i - 1;
+        while(low <= high) {
+            m = (low + high) / 2; //折半
+            if(LT(L.r[0].key,L.r[m].key)) { //'<' 插入点在低半区
+                high = m - 1；
+            } else {    //插入点在高半区
+                low = m + 1; 
+            }
+        }
+        for(j = i -1 ; j >= high + 1; --j) {
+            L.r[j+1] = L.r[j];
+        }
+        L.r[high + 1] = L.r[0];
+    }
+}
+
+//对顺序表L作一趟希尔插入排序
+//1.前后记录位置的增量是dk，而不是1；
+//2.r[0]只是暂存单元，不是哨兵。当j<=0时，插入位置已找到
