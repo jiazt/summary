@@ -1121,3 +1121,68 @@ void BInsertSort(SqList &L) {
 //对顺序表L作一趟希尔插入排序
 //1.前后记录位置的增量是dk，而不是1；
 //2.r[0]只是暂存单元，不是哨兵。当j<=0时，插入位置已找到
+void ShellInsert(SqList &L, int dk) {
+    for(i = dk + 1; i<= L.length ; ++i) {
+        if(LT(L.r[i].key, L.r[i - dk].key)) { //需将L.r[i]插入有序增量子表
+            L.r[0] = L.r[i]; //暂存在L.r[0]
+            for(j = i - dk; j>0 && LT(L.r[0].key, L.r[j].key); j-=dk) {
+                L.r[j + dk] = L.r[j];
+            }
+            L.r[j + dk] = L.r[0];
+        }
+    }
+}
+
+//按增量序列dlta[0..t-1]对顺序表L作希尔排序
+void ShellSort(SqList &L, int dlta[] , int t) {
+    for(k = 0;k < t; ++k) {
+        ShellInsert(L, dlta[k]);
+    }
+}
+
+//快速排序
+//交换顺序表L中子表r[low..high]的记录
+//在它之前（后）的记录均不大（小）于它
+int Partition(SqList &L, int low, int high) {
+    L.r[0] = L.r[low];
+    pivotkey = L.r[low].key; //记录关键字
+    while(low < high) {
+        while(low < high && L.r[high].key >= pivotkey) {
+            --high
+        }
+        L.r[low] = L.r[high];
+        while(low < high && L.r[low].key <= pivotkey) {
+            ++low;
+        }
+        L.r[high] = L.r[low];
+    }
+    L.r[low] = L.r[0];
+    return low;
+}
+
+//对顺序表L作快速排序
+void QSort(SqList &L, int low, int high) {
+    if(low < high) {
+        pivotkey = Partition(L, low, high);
+        Qsort(L, low, pivotkey - 1);
+        Qsort(L, pivotkey + 1, high);
+    }
+}
+
+void QuickSort(SqList &L) {
+    Qsort(L, 1, L.length);
+}
+
+//对顺序表L作简单选择排序
+void SelectSort(SqList &L) {
+    for(i = 1 ; i < L.length ; ++i) {
+        j = SelectMinKey(L, i); //在L.r[i]中选择key最小的记录
+        if(i != j) {
+            k = L.r[i];
+            L.r[i] = L.r[j];
+            L.r[j] = k; 
+        } 
+    }
+}
+
+//

@@ -182,3 +182,12 @@ CREATE TABLE Orders
     Id_P int FOREIGN KEY REFERENCES Persons(Id_P)
 )
 
+-- DEFAULT 约束用于向列中插入默认值。
+CREATE TABLE Orders
+(
+    Id_O int NOT NULL,
+    OrderNo int NOT NULL,
+    Id_P int,
+    OrderDate date DEFAULT GETDATE()
+)
+

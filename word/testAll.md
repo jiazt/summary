@@ -80,17 +80,29 @@ n. 出版；发行；出版物；发行物；公布；发布
 #republican 
 adj. 共和国的；共和政体的；(美国)共和党的；支持共和党的
 n. 拥护共和政体者；共和主义者
-
+Some families have been republican for generations. 
+有些家庭世代都支持共和党。
 
 #publicity 
 n. 公众信息；宣传；公之于众的状况
 
-★publicized adj. 公开的
-★publicly adv. 公共地；公开地；公众地
+#publicized 
+adj. 公开的
+
+#publicly 
+adv. 公共地；公开地；公众地
 ※in public 公开地，当众
-※mass n. 民众；大量
-※civil adj. 公民的
-law n. 法律；法令；法规；规律；定律
+
+#mass 
+n. 民众；大量
+
+#civil 
+adj. 公民的
+Years of civil war have wrecked the country's infrastructure and destroyed its social fabric. 
+经年内战已破坏了国家的基础设施，摧毁了其社会结构。
+
+#law 
+n. 法律；法令；法规；规律；定律
 ★claw n. 爪；螯；钳；爪形器具
 v. 用爪抓 (或挖)
 ★lawful adj. 合法的；法定的；法律许可的
