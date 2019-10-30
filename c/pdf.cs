@@ -1097,6 +1097,20 @@ void InsertSort(SqList &L) {
     }
 }
 
+//插入排序 网上算法
+void insertion_sort(int arr[], int len){
+    int i,j,key;
+    for (i=1;i<len;i++){
+        key = arr[i];
+        j=i-1;
+        while((j>=0) && (arr[j]>key)) {
+                arr[j+1] = arr[j];
+                j--;
+        }
+        arr[j+1] = key;
+    }
+}
+
 //对顺序表L作折半插入排序
 void BInsertSort(SqList &L) {
     for(i = 2; i <= L.length; ++i) {
@@ -1139,6 +1153,7 @@ void ShellSort(SqList &L, int dlta[] , int t) {
         ShellInsert(L, dlta[k]);
     }
 }
+
 
 //快速排序
 //交换顺序表L中子表r[low..high]的记录
@@ -1185,4 +1200,74 @@ void SelectSort(SqList &L) {
     }
 }
 
-//
+//选择排序 网上算法
+void selection_sort(int arr[], int len) 
+{
+    int i,j;
+    for (i = 0 ; i < len - 1 ; i++) 
+    {
+        int min = i;
+        for (j = i + 1; j < len; j++)     //走訪未排序的元素
+                if (arr[j] < arr[min])    //找到目前最小值
+                        min = j;    //紀錄最小值
+        swap(&arr[min], &arr[i]);    //做交換
+    }
+}
+
+//堆排序
+//已知H.r[s..m]中记录的关键字除H.r[s].key之外均满足堆的定义
+//使H.r[s..m]成为一个大顶堆
+void HeapAdjust(HeapType &H, int s, int m) {
+    rc = H.r[s];
+    for(j = 2*s ; j <= m ; j *= 2) {
+        if(j < m && LT(H.r[j].key, H.r[j+1].key)) {
+            ++j;
+        }
+        if(!LT(rc.key, H.r[j].key)) {
+            break;
+        }
+        H.r[s] = H.r[j];
+        s = j;
+    }
+    H.r[s] = rc;
+}
+
+//对顺序表H进行堆排序
+void HeapSort(HeapType &H) {
+    for(i = H.length/2 ; i > 0 ; --i) {
+        HeapAdjust(H, i, H.length);
+    }
+    for(i = H.length; i>1; --i) {
+        swap(H.r[1], H.r[i]);
+        HeapAdjust(H, 1, i-1);
+    }
+}
+
+//归并排序
+//将有序的SR[i..M]
+void Merge(RcdType SR[], RcdType &TR[], int i, int m, int n) {
+    for(j = m + 1,k = i ; i <= m && j <= n ; ++k) {
+        if(LQ(SR[i].key, SR[j].key)) {
+            TR[k] = SR[i++];
+        } else {
+            TR[k] = SR[j++]
+        }
+    }
+    if(i <= m) {
+        TR[k..n] = SR[i..m]; //将剩余SR[i..m]复制到TR
+    }
+    if(j <= n) {
+        TR[k..n] = SR[j..n]; //将剩余SR[j..n]复制到TR
+    }
+}
+
+void MSort(RcdType SR[], RcdType &TR1[], int s, int t) {
+    if(s == t) {
+        TR1[s] = SR[s];
+    } else {
+        m = (s + t)/2; //将SR[s..t]平分为SR[s..m]和SR[m+1..t]
+        MSort(SR, TR2, s, m); //递归将SR[s..m]归并为有序的TR2[s..m]
+        MSort(SR, TR2, m + 1 ,t); //递归将SR[m+1..t]归并为有序的TR2[m+1..t]
+        Merge(TR2)
+    }
+}
