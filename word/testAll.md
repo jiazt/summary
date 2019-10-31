@@ -103,21 +103,41 @@ Years of civil war have wrecked the country's infrastructure and destroyed its s
 
 #law 
 n. 法律；法令；法规；规律；定律
-★claw n. 爪；螯；钳；爪形器具
+
+#claw 
+n. 爪；螯；钳；爪形器具
 v. 用爪抓 (或挖)
-★lawful adj. 合法的；法定的；法律许可的
-★lawsuit n. 诉讼；诉讼案件
-★flaw n. 瑕疵；裂纹；缺点
+The cat tried to cling to the edge by its claws. 
+猫试图用爪子抓住边缘。
+
+#lawful 
+adj. 合法的；法定的；法律许可的
+
+#lawsuit 
+n. 诉讼；诉讼案件
+
+#flaw 
+n. 瑕疵；裂纹；缺点
 v. 使破裂；使有缺陷
-★lawyer n. 律师；法学家
-※legislation n. 法律；法规
-mean v. 意味着，即是；意指，意思是说； 打算，意欲；意义重大
+
+#lawyer 
+n. 律师；法学家
+
+#legislation 
+n. 法律；法规
+
+#mean 
+v. 意味着，即是；意指，意思是说； 打算，意欲；意义重大
 adj. 吝啬的；刻薄的；破旧的
 n. 平均值；平均数
-★meaning n. 意义，含义
+
+#meaning 
+n. 意义，含义
 ★well-meaning adj. 善意的；好心的
-★meaningless adj. 没有意义的；不重要
-的；无价值的
+
+#meaningless 
+adj. 没有意义的；不重要的；无价值的
+
 ★meaningfully adv. 有意图地；有意义地； 重要地
 ★means n. 方法；手段
 ★meanwhile adv. 同时；其间

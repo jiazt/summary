@@ -993,7 +993,21 @@ void Trial(int i, int n) {
 }
 
 // ---图---
-
+//理解图的基本概念，掌握图的存贮结构，图的遍历、最小生成树和拓扑排序
+//图的数组存储方式
+# define INFINITY INT_MAX  //最大值
+# define Max_Vertex_Num 20 //最大顶点树
+typedef enum {DG, DN, UDG, UDN} GraphKind; //{有向图，有向网，无向图，无向网}
+typedef struct ArcCell {
+    VRType adj;  // VRType 是顶点关系类型。对无权图用1或0
+    InfoType *info;  //该弧相关信息的指针
+}ArcCell, AdjMatrix[Max_Vertex_Num][Max_Vertex_Num];
+typedef struct {
+    VertexType vexs[Max_Vertex_Num];
+    AdjMatrix arcs;
+    int vexnum, arcnum;
+    GraphKind kind;
+}MGraph;
 
 
 // ---查询---
@@ -1268,6 +1282,10 @@ void MSort(RcdType SR[], RcdType &TR1[], int s, int t) {
         m = (s + t)/2; //将SR[s..t]平分为SR[s..m]和SR[m+1..t]
         MSort(SR, TR2, s, m); //递归将SR[s..m]归并为有序的TR2[s..m]
         MSort(SR, TR2, m + 1 ,t); //递归将SR[m+1..t]归并为有序的TR2[m+1..t]
-        Merge(TR2)
+        Merge(TR2, TR1, s, m, t);//将TR2[s..m]和TR2[m+1..t]归并到TR1[s..t]
     }
+}
+
+void MergeSort(SqList &L) {
+    MSort(L.r, L.r, 1 ,L.length);
 }
