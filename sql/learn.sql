@@ -161,11 +161,12 @@ DROP CONSTRAINT uc_PersonID
 -- 表创建时在 "Id_P" 列创建 PRIMARY KEY 约束
 CREATE TABLE Persons
 (
-    Id_P int NOT NULL PRIMARY KEY,
+    Id_P int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
     Address varchar(255),
-    City varchar(255)
+    City varchar(255),
+    PRIMARY KEY (Id_P)
 )
 -- 添加主键
 ALTER TABLE Persons
@@ -177,9 +178,22 @@ DROP CONSTRAINT pk_PersonID
 -- 一个表中的 FOREIGN KEY 指向另一个表中的 PRIMARY KEY
 CREATE TABLE Orders
 (
-    Id_O int NOT NULL PRIMARY KEY,
+    Id_O int NOT NULL,
     OrderNo int NOT NULL,
-    Id_P int FOREIGN KEY REFERENCES Persons(Id_P)
+    Id_P int,
+    PRIMARY KEY (Id_O),
+    FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)
+)
+
+-- CHECK 约束用于限制列中的值的范围
+CREATE TABLE Persons
+(
+    Id_P int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    CHECK (Id_P>0)
 )
 
 -- DEFAULT 约束用于向列中插入默认值。
@@ -190,4 +204,50 @@ CREATE TABLE Orders
     Id_P int,
     OrderDate date DEFAULT GETDATE()
 )
+
+-- CREATE INDEX 语句用于在表中创建索引
+CREATE INDEX index_name
+ON table_name (column_name)
+
+-- 通过使用 DROP 语句，可以轻松地删除索引、表和数据库
+DROP INDEX table_name.index_name
+DROP TABLE 表名称
+DROP DATABASE 数据库名称
+
+-- ALTER TABLE 语句用于在已有的表中添加、修改或删除列
+ALTER TABLE Persons
+ADD Birthday date
+-- 删除 "Person" 表中的 "Birthday" 
+ALTER TABLE Person
+DROP COLUMN Birthday
+-- 改变 "Persons" 表中 "Birthday" 列的数据类型。
+ALTER TABLE Persons
+ALTER COLUMN Birthday year
+
+-- Auto-increment 会在新记录插入表中时生成一个唯一的数字
+CREATE TABLE Persons
+(
+    P_Id int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    PRIMARY KEY (P_Id)
+)
+
+-- 视图是可视化的表
+CREATE VIEW [Current Product List] AS
+SELECT ProductID,ProductName
+FROM Products
+WHERE Discontinued=No
+
+-- NULL 值是遗漏的未知数据
+SELECT LastName,FirstName,Address FROM Persons
+WHERE Address IS NOT NULL
+SELECT LastName,FirstName,Address FROM Persons
+WHERE Address IS NULLs
+
+-- SQL 拥有很多可用于计数和计算的内建函数
+SELECT Customer FROM Orders
+WHERE OrderPrice>(SELECT AVG(OrderPrice) FROM Orders)
 

@@ -1003,11 +1003,50 @@ typedef struct ArcCell {
     InfoType *info;  //该弧相关信息的指针
 }ArcCell, AdjMatrix[Max_Vertex_Num][Max_Vertex_Num];
 typedef struct {
-    VertexType vexs[Max_Vertex_Num];
-    AdjMatrix arcs;
-    int vexnum, arcnum;
-    GraphKind kind;
+    VertexType vexs[Max_Vertex_Num]; //顶点向量
+    AdjMatrix arcs; //邻接矩阵
+    int vexnum, arcnum;  //图的当前顶点数和弧数
+    GraphKind kind;  //图的种类标志
 }MGraph;
+
+//采用数组（邻接矩阵）表示法，构造图G
+Status CreateGraph(MGraph &G) {
+    scanf(&G.kind);
+    switch (G.kind) {
+        case DG: return CreateDG(G); //构造有向图G
+        case DN: return CreateDN(G); //构造有向网G
+        case UDG: return CreateNDG(G); //构造无向图G
+        case UDN: return CreateUDN(G); //构造无向图G
+        default: return ERROR;
+    }
+}
+
+//---图的邻接表存储表示---
+#define Max_Vertex_Num 20
+typedef struct ArcNode {
+    int adjvex; //该弧所指向的顶点的位置
+    //struct ArcNode *nextarc; //指向下一条弧的指针
+    InfoType *info; //该弧相关信息的指针
+}ArcNode;
+
+typedef struct VNode {
+    VertexType dataA;  //顶点信息
+    ArcNode *firstarc;  //指向第一条依附顶点的弧的指针
+}VNode, AdjList[Max_Vertex_Num];
+typedef struct {
+    AdjList vertices;
+    int vexnum, arcnum; //图的当前顶点数和弧数
+    int kind;  //图的种类
+}ALGraph;
+
+//深度优先遍历
+Boolean visited[MAX]; //访问标志数组
+Status (*VisitFunc)(int v); //函数变量
+
+void DFSTraverse(Graph G, Status (*Visit)(int v)) {
+    VisitFunc = Visit;
+    for
+}
 
 
 // ---查询---

@@ -138,12 +138,28 @@ n. 意义，含义
 #meaningless 
 adj. 没有意义的；不重要的；无价值的
 
-★meaningfully adv. 有意图地；有意义地； 重要地
-★means n. 方法；手段
-★meanwhile adv. 同时；其间
-※by means of 用；依靠
-※by no means 绝不；一点也不
-※indicate v. 表明；暗示；象征；反映
+#meaningfully 
+adv. 有意图地；有意义地； 重要地
+
+#means 
+n. 方法；手段
+
+#meanwhile 
+adv. 同时；其间
+He had always found his wife's mother a bit annoying. The mother-daughter relationship, meanwhile, was close. 
+他总是觉得丈母娘有点烦人，然而她们母女之间的关系却非常亲密。
+
+#by means of 
+用；依靠
+
+#by no means 
+绝不；一点也不
+
+#indicate 
+v. 表明；暗示；象征；反映
+Mr Rivers has indicated that he may resign.
+里弗斯先生暗示他可能会辞职。
+
 ※implication n. 可能引发的后果；暗示；含意
 influence n. 影响；感化；势力，权势
 v. 影响；感化
