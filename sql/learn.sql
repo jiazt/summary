@@ -247,7 +247,15 @@ WHERE Address IS NOT NULL
 SELECT LastName,FirstName,Address FROM Persons
 WHERE Address IS NULLs
 
--- SQL 拥有很多可用于计数和计算的内建函数
+-- SQL 拥有很多可用于计数和计算的内建函数 AVG COUNT FIRST MAX ,,,
 SELECT Customer FROM Orders
 WHERE OrderPrice>(SELECT AVG(OrderPrice) FROM Orders)
+
+SELECT COUNT(*) AS NumberOfOrders FROM Orders
+
+SELECT MIN(OrderPrice) AS SmallestOrderPrice FROM Orders
+
+-- 合计函数 (比如 SUM) 常常需要添加 GROUP BY 语句。
+SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
 

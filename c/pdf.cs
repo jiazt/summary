@@ -1045,9 +1045,83 @@ Status (*VisitFunc)(int v); //函数变量
 
 void DFSTraverse(Graph G, Status (*Visit)(int v)) {
     VisitFunc = Visit;
-    for
+    for(v = 0 ; v < G.vexnum ; ++v) {
+        visited[v] = FALSE; // 访问标志数组初始化
+    }
+    for(v = 0 ; v < G.vexnum ; ++v) {
+        if(!visited[v]) {
+            DFS(G, v);
+        }
+    }
 }
 
+void DFS(Graph G, int v) {
+    visited[v] = TRUE;
+    VisitFunc(v);
+    for(w = FirstAdjVex(G, v); w>=0 ; w=NextAdjVex(G, v, w)) {
+        if(!visited[w]) {
+            DFS(G, w);
+        }
+    }
+}
+
+//按广度优先非递归遍历G
+void BFSTraverse(Graph G, Status(*Visit)(int v)) {
+    for(v = 0 ; v < G.vexnum ; ++v) {
+        visited[v] = FALSE;
+    }
+    InitQueue(Q);
+    for(v = 0; v < G.vexnum; ++v) {
+        if(!visited[v]) {
+            visited[v] = TRUE;
+            Visit(v);
+            EnQueue(Q, v);
+            while(!QueueEmpty(Q)) {
+                DeQueue(Q, u);
+                for(w = FirstAdjVex(G, u); w>=0; w=NextAdjVex(G, u, w)) {
+                    if(!Visited[w]) {
+                        Visited[w] = TRUE;
+                        Visit(w);
+                        EnQueue(Q, W);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//最小生成树
+void MiniSpanTree_PRIM(MGraph G, VertexType u) {
+    //用普里姆算法从第u个顶点出发构造网G的最小生成树T，输出T的各条边
+    //记录从顶点集U到V-U的代价最小的边的辅助数组定义
+    // struct {
+    //     VertexType adjvex;
+    //     VRType lowcost;
+    // }closedge[Max_Vertex_Num];
+    k = LocateVex(G, u);
+    for(j = 0;j < G.vexnum ; ++j) { //辅助数组初始化
+        if(j!=k) {
+            closedge[j] = {u, G.arcs[k][j].adj};
+        }
+    }
+    closedge[k].lowcost = 0; //初始 U={u}
+    for(i = 1;i < G.vexnum; ++i) { //选择其余G.vexnum - 1个顶点
+        k = minimum(closedge); //求出T的下一个结点；第k顶点
+        printf(closedge[k].adjvex, G.vexs[k]);  //输出生成树的边
+        closedge[k].lowcost = 0;  //第k顶点并入U集
+        for(j = 0; j < G.vexnum ; ++j) {
+            if(G.arcs[k][j].adj < closedge[j].lowcost) {
+                //新顶点并入U后重新选择最小边
+                closedge[j] = {G.vexs[k], G.arcs[k][j].adj};
+            }
+        }
+    }
+}
+
+//拓扑排序
+Status TopologicalSort(ALGraph G) {
+    
+}
 
 // ---查询---
 //静态查找的顺序存储结构

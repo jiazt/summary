@@ -160,11 +160,17 @@ v. 表明；暗示；象征；反映
 Mr Rivers has indicated that he may resign.
 里弗斯先生暗示他可能会辞职。
 
-※implication n. 可能引发的后果；暗示；含意
-influence n. 影响；感化；势力，权势
+#implication 
+n. 可能引发的后果；暗示；含意
+
+#influence 
+n. 影响；感化；势力，权势
 v. 影响；感化
-★influential adj. 有影响力的；有势力的
+
+#influential 
+adj. 有影响力的；有势力的
 n. 影响者；有势力的人
+
 ★impact n. 碰撞；撞击；影响
 v. 撞击；碰撞；冲击；(对……)产生
 
