@@ -1,3 +1,8 @@
+//数据结构的基本概念，熟悉评价算法的标准
+
+
+//线性表
+//线性表的基本概念，熟练运用顺序存储结构和链式存储结构实现其相应操作
 //求线性表LA和LB的并集
 void Union(List &La,List Lb) {
 	La.len = ListLength(La);
@@ -1120,7 +1125,32 @@ void MiniSpanTree_PRIM(MGraph G, VertexType u) {
 
 //拓扑排序
 Status TopologicalSort(ALGraph G) {
-    
+    //有向图G采用邻接表存储结构
+    //若G无回路，则输出G的顶点的一个拓扑序列并返回OK，否则ERROR。
+    FindInDegree(G, indegree);
+    InitStack(S);
+    for(i = 0 ; i < G.vexnum ; ++i) { //建零入度顶底栈S
+        if(!indegree[i]) {  //入度为0者进栈
+            Push(S, i);
+        }
+        count = 0; //对输出顶点计数
+        while(!StackEmpty(S)) {
+            Pop(S, i);
+            printf(i, G.vertices[i].data); 
+            ++count; //输出i号顶点并计数
+            for(p = G.vertices[i].firstarc; p=p -> nextarc) {
+                k = p -> adjvex;
+                if(!(--indegree[k])) {
+                    Push(S, k);
+                }
+            }
+        }
+        if(count < G.vexnum) {
+            return ERROR;
+        } else {
+            return OK;
+        }
+    }
 }
 
 // ---查询---

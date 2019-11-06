@@ -170,17 +170,29 @@ v. 影响；感化
 #influential 
 adj. 有影响力的；有势力的
 n. 影响者；有势力的人
+It helps to have influential friends. 
+有几个位高权重的朋友很有好处。
 
-★impact n. 碰撞；撞击；影响
+#impact 
+n. 碰撞；撞击；影响
 v. 撞击；碰撞；冲击；(对……)产生
-
 live v. 居住；生活；生存；以……为生；留存； 铭记
 adj. 活的；有生命的；现场演出的
+The plane is destroyed, a complete wreck: the pilot must have died on impact 
+飞机遭到毁坏，完全成了一堆残骸：飞行员肯定死于撞击
 
-★alive adj. 活着的；有生气的，活跃的
-★deliver v. 发表 (讲话)；递送；接生 (婴儿)
-★delivery n. 分娩；投递；讲话方式
-★outlive v. 比……活得长；比……经久
+
+#alive 
+adj. 活着的；有生气的，活跃的
+
+#deliver 
+v. 发表 (讲话)；递送；接生 (婴儿)
+
+#delivery 
+n. 分娩；投递；讲话方式
+
+#outlive 
+v. 比……活得长；比……经久
 ★liveliness n. 活力
 ★livelihood n. 生计；生活
 ※live off 依赖……生活，依赖

@@ -255,7 +255,12 @@ SELECT COUNT(*) AS NumberOfOrders FROM Orders
 
 SELECT MIN(OrderPrice) AS SmallestOrderPrice FROM Orders
 
--- 合计函数 (比如 SUM) 常常需要添加 GROUP BY 语句。
+-- 合计函数 (比如 SUM) 常常需要添加 GROUP BY 语句
 SELECT Customer,SUM(OrderPrice) FROM Orders
 GROUP BY Customer
 
+-- 在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用
+SELECT Customer,SUM(OrderPrice) FROM Orders
+WHERE Customer='Bush' OR Customer='Adams'
+GROUP BY Customer
+HAVING SUM(OrderPrice)>1500
