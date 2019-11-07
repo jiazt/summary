@@ -193,8 +193,15 @@ n. 分娩；投递；讲话方式
 
 #outlive 
 v. 比……活得长；比……经久
-★liveliness n. 活力
-★livelihood n. 生计；生活
+
+#liveliness 
+n. 活力
+
+#livelihood 
+n. 生计；生活
+As a result of this conflict he lost both his home and his means of livelihood. 
+这场冲突使他同时失去了住所和生计来源。
+
 ※live off 依赖……生活，依赖
 ※dwell v. 居住于；存在于
 ※reside v. 定居于；属于
@@ -202,7 +209,10 @@ v. 比……活得长；比……经久
 ※survival n. 生存；幸存
 ※inhabit v. 居住于
 ※settle v. 使定居
-federal adj.联邦的
+
+#federal 
+adj.联邦的
+
 ★federation n. 联邦制国家；联邦；(社团或
 组织的)同盟；联盟；联合会
 ※FBI 联 邦调 查 局  ( F e d e r a l  B u r e a u  o f Investigation)
