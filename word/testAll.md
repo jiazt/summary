@@ -202,7 +202,9 @@ n. 生计；生活
 As a result of this conflict he lost both his home and his means of livelihood. 
 这场冲突使他同时失去了住所和生计来源。
 
-※live off 依赖……生活，依赖
+#live off 
+依赖……生活，依赖
+
 ※dwell v. 居住于；存在于
 ※reside v. 定居于；属于
 ※survive v. 幸存；比……活得长
@@ -212,20 +214,29 @@ As a result of this conflict he lost both his home and his means of livelihood.
 
 #federal 
 adj.联邦的
+The federal government controls just 6% of the education budget. 
+联邦政府仅掌控6%的教育预算。
 
-★federation n. 联邦制国家；联邦；(社团或
-组织的)同盟；联盟；联合会
-※FBI 联 邦调 查 局  ( F e d e r a l  B u r e a u  o f Investigation)
+federation n. 联邦制国家；联邦；(社团或组织的)同盟；联盟；联合会
+※FBI 联 邦调 查 局  (Federal Bureau of Investigation)
 ※CIA 中央情报 局  (Central Intelligenc e Agency)
-large adj. 大的；大规模的；大量的
+
+#large 
+adj. 大的；大规模的；大量的
+
 ★largely adv. 主要地；大体上地；大量地
+
 ★enlarge v. 扩大；放大；扩充
+
 ※at large 一般；全体地；普遍地
 ※bulky adj. 庞大的；体积大的
 ※outsize adj. 特大的
 ※huge adj. 庞大的
-mark v. 做标记；指出；标明；在 (商品)上贴 价格 (或质量等)的标签
+
+#mark 
+v. 做标记；指出；标明；在 (商品)上贴 价格 (或质量等)的标签
 n. 痕迹；斑点；污点；记号；符号；(考 试等)分数
+
 ★market n. 市场；行情
 v. 推销；营销
 ★marketplace n. 市集；商场；市场
