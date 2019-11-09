@@ -237,21 +237,24 @@ adj. 大的；大规模的；大量的
 v. 做标记；指出；标明；在 (商品)上贴 价格 (或质量等)的标签
 n. 痕迹；斑点；污点；记号；符号；(考 试等)分数
 
-★market n. 市场；行情
-v. 推销；营销
+★market n. 市场；行情 v. 推销；营销
 ★marketplace n. 市集；商场；市场
 ★marked adj. 显著的，明显的；有记号的
 ★marketer n. 市场商人；市场营销人员
-★remark v. 评论；谈到
-n. 评论；话语；注意；观察
+★remark v. 评论；谈到n. 评论；话语；注意；观察
 ★remarkable adj. 卓越的；非凡的；辉煌的
 ★landmark n. 地标；里程碑；转折点
-※blot n. 污点
+
+
+#blot 
+n. 污点
 ※spot n. 点；斑点
 ※stain n. 污迹；污渍
 v. 玷污；污染
 ※symbol n. 象征；标志
-system n. 系统；体制
+
+#system 
+n. 系统；体制
 ★systematic adj. 有系统的；系统化的
 ★systematically adv. 系统地；有条理地
 ※regime n. 政权；政体 (指非民主且统治手 段不被认可的政府或政权体系)；管 理制度；组织方法；养生法
