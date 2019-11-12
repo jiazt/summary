@@ -2,28 +2,27 @@
 
 
 //线性表
-//线性表的基本概念，熟练运用顺序存储结构和链式存储结构实现其相应操作
-//求线性表LA和LB的并集
+//算法2.1 求线性表LA和LB的并集
 void Union(List &La,List Lb) {
-	La.len = ListLength(La);
-	Lb.len - ListLength(Lb);
-    for(i=1;i<Lb.len;i++) {
+	La_len = ListLength(La);
+	Lb_len = ListLength(Lb);
+    for(i=1;i<Lb_len;i++) {
         GetElem(Lb,i,e); //取Lb中第i个数据元素赋给e
         if(!LocateElem(La,e,equal)){
             //La中不存在和e相同的数据元素，则插入之
-            ListInsert(La,++La.len;e);
+            ListInsert(La,++La_len.len;e);
         }
     }
 }
 
-//归并La和Lb得到新的线性表Lc，Lc的数据元素也是按非递减排列
+//算法2.2 归并La和Lb得到新的线性表Lc，Lc的数据元素也是按非递减排列
 void MergeList(List La,List Lb,List &Lc) {
     //La和Lb中数据元素按值非递增排列
     InitList(Lc);
     i =j = 1;k=0;
-    La.len = ListLength(La);
-    Lb.len = ListLength(Lb);
-    while((i<=La.len) && (j<=Lb.len)) {
+    La_len = ListLength(La);
+    Lb_len = ListLength(Lb);
+    while((i<=La_len) && (j<=Lb_len)) {
         GetElem(La,i,ai);
         GetElem(Lb,i,bi);
         if(ai<=bi) {
@@ -32,11 +31,11 @@ void MergeList(List La,List Lb,List &Lc) {
             ListInsert(Lc,++k,bi);++j;
         }
     }
-    while(i<=La.len) {
+    while(i<=La_len) {
         GetElem(La,i,ai);
         ListInsert(Lc,++k,ai);
     }
-    while(j<=Lb.len) {
+    while(j<=Lb_len) {
         GetElem(Lb,i,bi);
         Listinsert(Lc,++k,bj);
     }
@@ -52,7 +51,7 @@ typedef struct {
     int listsize; //当前分配的存储容量
 }SqList;
 
-//构造一个空的线性表L
+//算法2.3 构造一个空的线性表L
 Status InitList_Sq(SqList &L) {
     L.elem = (ElemType *)malloc(List_Init_Size * sizeof(ElemType));
     if(! L.elem) {
@@ -63,7 +62,7 @@ Status InitList_Sq(SqList &L) {
     return OK;
 }
 
-//在顺序表L中第i个位置之前插入新的元素e
+//算法2.4 在顺序表L中第i个位置之前插入新的元素e
 Status ListInsert_Sq(SqList &L,int i,ElemType e) {
     if(i<1||i>L.length+1) {
         return ERROR;

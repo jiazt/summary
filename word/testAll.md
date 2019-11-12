@@ -248,30 +248,40 @@ n. 痕迹；斑点；污点；记号；符号；(考 试等)分数
 
 #blot 
 n. 污点
-※spot n. 点；斑点
-※stain n. 污迹；污渍
+※ spot n. 点；斑点
+※ stain n. 污迹；污渍
 v. 玷污；污染
-※symbol n. 象征；标志
+※ symbol n. 象征；标志
 
 #system 
 n. 系统；体制
-★systematic adj. 有系统的；系统化的
-★systematically adv. 系统地；有条理地
-※regime n. 政权；政体 (指非民主且统治手 段不被认可的政府或政权体系)；管 理制度；组织方法；养生法
-※organization n. 组织；机构；团体
-※structure n. 结构；构造；组织
-stress v. 强调；着重
-n. 压力；强调；重点；着重；重音；
-(物)应力
-※stressed-out 因心理紧张而被压垮的
-※highlight v. 强调；突出
-※emphasize v. 强调
-※strain v. 使不堪承受；使紧张；拉伤；扭伤
+★ systematic adj. 有系统的；系统化的
+★ systematically adv. 系统地；有条理地
+
+※ regime n. 政权；政体 (指非民主且统治手 段不被认可的政府或政权体系)；管 理制度；组织方法；养生法
+Pujol was imprisoned and tortured under the Franco regime. 
+普约尔在佛朗哥政权统治时期受到了监禁和折磨。
+
+※ organization n. 组织；机构；团体
+※ structure n. 结构；构造；组织
+
+#stress 
+v. 强调；着重
+n. 压力；强调；重点；着重；重音；(物)应力
+'Sit down,' she replied, stressing each word. 
+“坐下，”她一字一顿地说道。
+
+※ stressed-out 因心理紧张而被压垮的
+※ highlight v. 强调；突出
+※ emphasize v. 强调
+※ strain 
+v. 使不堪承受；使紧张；拉伤；扭伤
 n. 压力；负担；重负
 
-peer n. 同龄人；同等地位的人；贵族
+#peer 
+n. 同龄人；同等地位的人；贵族
 v. 仔细看；费力地看
-※gaze at 凝视；注视
+※ gaze at 凝视；注视
 ※stare at 盯；凝视
 ※glare at 长久地怒视；瞪着
 ※contemporary n. 同代人
