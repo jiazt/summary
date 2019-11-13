@@ -64,7 +64,7 @@ Status InitList_Sq(SqList &L) {
 
 //算法2.4 在顺序表L中第i个位置之前插入新的元素e
 Status ListInsert_Sq(SqList &L,int i,ElemType e) {
-    if(i<1||i>L.length+1) {
+    if(i < 1 || i > L.length+1) {
         return ERROR;
     }
     if(L.length >= L.listsize) {
@@ -76,30 +76,30 @@ Status ListInsert_Sq(SqList &L,int i,ElemType e) {
         L.listsize += ListIncrement;
     }
     q = &(L.elem[i-1]);
-    for(p = &(L.elem[L.length-1]);p>=q;--p) {
-        *(p + 1) = *p;
+    for(p = &(L.elem[L.length-1]) ; p >= q ; --p) {
+        *(p + 1) = *p; //插入位置及之后的元素右移
     }
     *q = e;
     ++L.length;
     return OK;
 }
 
-//在顺序表L中删除第i个元素，并用e返回其值
+//算法2.5 在顺序表L中删除第i个元素，并用e返回其值
 Status ListDelete_Sq(SqList &L, int i, ElemType &e) {
-    if((i<1) ||(i>L.length)) {
+    if((i < 1) || (i > L.length)) {
         return ERROR;
     }
     p = &(L.elem[i-1]); //p为被删除元素的位置
     e = *p;    //被删除元素的值赋给e
     q = L.elem + L.length - 1;  //表尾元素的位置
-    for(;p<=q;++p) {
-        *(p-1) = p;
+    for(++p ; p<=q ; ++p) {
+        *(p-1) = p; //被删除元素之后的元素左移
     }
     --L.length;
     return OK;
 }
 
-//在顺序线性表L中查找第1个值与e满足compare()的元素的位序
+//算法2.6 在顺序线性表L中查找第1个值与e满足compare()的元素的位序
 int LocateElem_Sq(SqList L,ElemType e,Status(*compare)(ElemType,ElemType)) {
     i = 1; //i的初值为第1个元素的位序
     p = L.elem;  //p的初值为第1个元素存储位置
@@ -113,7 +113,7 @@ int LocateElem_Sq(SqList L,ElemType e,Status(*compare)(ElemType,ElemType)) {
     }
 }
 
-//归并La和Lb得到新的线性顺序表Lc，Lc元素也按值非递减排列
+//算法2.7 归并La和Lb得到新的线性顺序表Lc，Lc元素也按值非递减排列
 void MergeList_Sq(SqList La, SqList Lb, SqList &Lc) {
     pa = La.elem;
     pb = Lb.elem;
@@ -140,7 +140,7 @@ void MergeList_Sq(SqList La, SqList Lb, SqList &Lc) {
 }
 
 // <------ 链式表 -------->
-//当第i个元素存在时，其值赋给e
+//算法2.8 当第i个元素存在时，其值赋给e
 Status GetElem_L(LinkList L, int i,ElemType &e) {
     p = L->next;
     j = 1;
@@ -155,7 +155,7 @@ Status GetElem_L(LinkList L, int i,ElemType &e) {
     return OK;
 }
 
-//在带头借点的单链线性表L中第i个位置之前插入元素e
+//算法2.9 在带头借点的单链线性表L中第i个位置之前插入元素e
 Status ListInsert_L(LinkList &L, int i, ElemType e) {
     p = L;
     j = 0;

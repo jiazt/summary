@@ -285,22 +285,30 @@ v. 仔细看；费力地看
 ※stare at 盯；凝视
 ※glare at 长久地怒视；瞪着
 ※contemporary n. 同代人
-issue v. 发行，发表；发布；发，发放
+
+#issue 
+v. 发行，发表；发布；发，发放
 n. 问题，争端；(报刊的)期、号、版次
+
 ★tissue n. 组织；薄的纱织品；面巾纸
-claim v. 要求；主张；声称；断言；索取
-n. 要求；主张；声称；断言；索赔；提要
-求的权利；(拥有或获得某物的)权利
+
+#claim 
+v. 要求；主张；声称；断言；索取
+n. 要求；主张；声称；断言；索赔；提要求的权利；(拥有或获得某物的)权利
+
 ★proclaim v. 宣布；声明；公布；明确表示
 ★disclaim v. 放弃；拒绝承认；否认；放弃 权利
 ★acclaim v. 向……欢呼；称赞；为……喝 彩；宣布；欢呼；喝彩
+
 ※lay claim to 对……提出所有权要求
 ※allege v. (未提出证据而)断言；指称；声称
 ※contend v. 声称；主张
 ※assert v. 声称；断言
+
 patent v. 取得……的专利权；授予专利
 adj. 专利的；明显的
 n. 专利；专利权；专利品
+
 ※intellectual property 知识产权
 court n. 法院，法庭；球场；庭院
 ★courteous adj. 有礼貌的
