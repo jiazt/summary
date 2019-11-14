@@ -160,38 +160,38 @@ Status ListInsert_L(LinkList &L, int i, ElemType e) {
     p = L;
     j = 0;
     while(p && j < i-1) {
-        p = p -> next;
+        p = p -> next; //寻找第i-1个结点
         j++;
     }
-    if(!p && j > i) {
-        return ERROR;
+    if(!p || j > i + 1) {  //i小于1或大于表长加1
+        return ERROR; 
     }
-    s = (LinkList)malloc(sizeof(LNode));
-    s -> data = e;
+    s = (LinkList)malloc(sizeof(LNode)); //生成新结点
+    s -> data = e;  
     s -> next = p -> next; //插入L
     p -> next = s;
     return OK;
 }
 
-//在带头结点的单链线性表L中，删除第i个元素，并由e返回其值
+//算法2.10 在带头结点的单链线性表L中，删除第i个元素，并由e返回其值
 Status ListDelete_L(LinkList &L, int i, ElemType &e) {
     p = L;
     j = 0;
-    while(p -> next && j < i-1) {
+    while(p -> next && j < i-1) { //寻找第i个结点，并令p指向其前趋
         p = p -> next;
         ++j;
     }
-    if(!(p -> next) || j > i-1) {
+    if(!(p -> next) || j > i-1) { //删除位置不合理
         return ERROR;
     }
     q = p -> next;
-    p -> next = q -> next;
+    p -> next = q -> next;  //删除并释放结点
     e = q -> data;
     free(q);
     return OK;
 }
 
-//逆位序输入n个元素的值，建立带投结点的单链线性表L
+//算法2.11 逆位序输入n个元素的值，建立带投结点的单链线性表L
 void CreateList L(LinkList &L,int n) {
     L = (LinkList)malloc(sizeof(LNode));
     L -> next = NULL; //先建立一个头结点的单链表
@@ -203,11 +203,11 @@ void CreateList L(LinkList &L,int n) {
     }
 }
 
-//归并La和Lb得到新的单链表Lc
+//算法2.12 归并La和Lb得到新的单链表Lc
 void MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc) {
     pa = La -> next;
     pb = Lb -> next;
-    Lc = pc = La;
+    Lc = pc = La;   //用La的头结点作为Lc的头结点
     while(pa && pb) {
         if(pa -> data <= pb -> data) {
             pc -> next = pa;
@@ -231,7 +231,7 @@ typedef struct {
     int cur;
 }component,SLinkList[MaxSize];
 
-//在静态单链线性表L中查找第1个值为e的元素
+//算法2.13 在静态单链线性表L中查找第1个值为e的元素
 int LocateElem_SL(SLinkList S,ElemType e) {
     i = S[0].cur;
     while(i && S[i].data != e) {
@@ -240,7 +240,7 @@ int LocateElem_SL(SLinkList S,ElemType e) {
     return i;
 }
 
-//将一维数组space中各分量链成一个备用链表，space[0].cur为头指针。
+//算法2.14 将一维数组space中各分量链成一个备用链表，space[0].cur为头指针。
 void InitSpace_SL(SLinkList &space) {
     for(i = 0;i < MaxSize;i++) {
         space[i].cur = i+1;
@@ -248,7 +248,7 @@ void InitSpace_SL(SLinkList &space) {
     space[MaxSize-1].cur = 0;
 }
 
-//若备用空间链表非空，则返回分配的结点下标，否则返回0
+//算法2.15 若备用空间链表非空，则返回分配的结点下标，否则返回0
 int Malloc_SL(SLinkList &space) {
     i = space[0].cur;
     if(space[0].cur){
@@ -257,20 +257,20 @@ int Malloc_SL(SLinkList &space) {
     return i;
 }
 
-//将下标为k的空闲结点回收到备用链表
+//算法2.16 将下标为k的空闲结点回收到备用链表
 void Free_SL(SLinkList &space, int k) {
     space[k].cur = space[0].cur;
     space[0].cur = k;
 }
 
-//（A-B）∪ (B-A) ***
+//算法2.17（A-B）∪ (B-A) 
 void Difference(SLinkList &space, int &s) {
     InitSpace_SL(space);
     S = Malloc_SL(space);
     r = S;
     scanf(m, n);
     for(j = 1;j <= m;++j) {
-        i = Malloc_SL.SL(space);
+        i = Malloc_SL(space);
         scanf(space[i].data);
         space[r].cur = i;
         r = i;
@@ -307,7 +307,7 @@ void Difference(SLinkList &space, int &s) {
 //     struct DuLNode *next;
 // }DuLNode,*DuLinkList;
 
-//在带头结点的双链循环线性表L中第i个位置之前插入元素e
+//算法2.18 在带头结点的双链循环线性表L中第i个位置之前插入元素e
 Status ListInsert_Dul(DuLinkList &L, int i, ElemType e) {
     if(!(p = GetElemP_DuL(L, i))) {
         return ERROR;
@@ -323,7 +323,7 @@ Status ListInsert_Dul(DuLinkList &L, int i, ElemType e) {
     return OK;
 }
 
-//删除带头结点的双链循环线性表L的第i个元素，i的合法值为1<=i<=表长
+//算法2.19 删除带头结点的双链循环线性表L的第i个元素，i的合法值为1<=i<=表长
 Status ListDelete_DuL() {
     if(!(p = GetElemP_DuL(L, i))) {
         return ERROR;
@@ -335,7 +335,7 @@ Status ListDelete_DuL() {
     return OK;
 }
 
-//在带头结点的单链线性表L的第i个元素之前插入元素e
+//算法2.20 在带头结点的单链线性表L的第i个元素之前插入元素e
 Status ListInsert_L(LinkList &L, int i, ElemType e) {
     if(!LocatePos(L, i - 1, h)) { //i值不合法
         return ERROR;
@@ -347,7 +347,7 @@ Status ListInsert_L(LinkList &L, int i, ElemType e) {
     return OK;
 }
 
-//归并La和Lb得到新的线性链表Lc
+//算法2.21 归并La和Lb得到新的线性链表Lc
 Status MergeList_L(LinkList &La,LinkList &Lb, LinkList &Lc) {
     if(!InitList(Lc)) {//存储空间分配失败
         return ERROR;
@@ -385,7 +385,7 @@ typedef struct {
     int expn;    //指数
 }term, ElemType;// term用于本ADT，Elemtype为LinkList的数据对象名
 
-//输入m项的系数和指数，建立表示一元多项式的有序链表P
+//算法2.22 输入m项的系数和指数，建立表示一元多项式的有序链表P
 void CreatePolyn(polynomail &P, int m) {
     InitList(P);
     h = GetHead(P);
@@ -402,7 +402,7 @@ void CreatePolyn(polynomail &P, int m) {
     }
 }
 
-// 多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
+//算法2.23 多项式加法；Pa = Pa + Pb利用两个多项式结点构成“和多项式”
 void AddPolyn(polynomail &Pa, polynomail &Pb) {
     ha = GetHead(Pa);
     hb = GetHead(Pb);
@@ -497,12 +497,12 @@ Status Pop(SqStack &S, SElemType &e) {
 }
 
 //栈的应用
-//对于输入的任意一个非十进制整数，打印输出与其等值的八进制数
+//算法3.1 对于输入的任意一个非十进制整数，打印输出与其等值的八进制数
 void conversion() {
     InitStack(S);
     scanf("%d",N);
     while(N) {
-        Push(S , N%8);
+        Push(S , N % 8);
         N = N/8;
     }
     while(!StackEmpty(s)) {
@@ -511,7 +511,7 @@ void conversion() {
     }
 }
 
-//利用字符栈S，从中端接受一行并传送至调用过程的数据区
+//算法3.2 利用字符栈S，从中端接受一行并传送至调用过程的数据区
 void LineEdit() {
     InitStack(S);
     ch = getchar();
@@ -523,17 +523,22 @@ void LineEdit() {
                     break;
                 case '@':
                     ClearStack(S);
+                    break;
                 default: 
                     Push(S,ch);
+                    break;
             }
             ch = getchar();
         }
         ClearStack(S);
+        if(ch! = EOF) {
+            ch = getchar();
+        }
     }
     DestroyStack(S);
 }
 
-//若迷宫maze中存在从入口start到出口end的通道，则求得一条存放在栈中（从栈底到栈顶），并返回true；否则false
+//算法3.3 若迷宫maze中存在从入口start到出口end的通道，则求得一条存放在栈中（从栈底到栈顶），并返回true；否则false
 Status MazePath(MakeType maze, PosType start, PosType end) {
     InitStack(S);
     curpos = start;
@@ -565,7 +570,7 @@ Status MazePath(MakeType maze, PosType start, PosType end) {
     return FlASE;
 }
 
-//算术表达式求值的算符优先算法，设OPTR和OPND分别为运算符栈和运算数栈
+//算法3.4 算术表达式求值的算符优先算法，设OPTR和OPND分别为运算符栈和运算数栈
 OperandType EvaluateExpression() {
     InitStack(OPTR);
     Push(OPTR,'#');
@@ -597,7 +602,7 @@ OperandType EvaluateExpression() {
     return GetTop(OPND);
 }
 
-//汉诺塔，将塔座x上按直径由小到大且自上而下编号1至n个原盘规则搬到
+//算法3.5 汉诺塔，将塔座x上按直径由小到大且自上而下编号1至n个原盘规则搬到
 //塔座z上，y可作辅助塔座。
 //搬动操作move(x, n, z)可定义为(c是初值为0的全局变量，对搬动计数)
 void hanoi(int n, char x, char y, char z) {
@@ -711,7 +716,7 @@ Status DeQueue(SqQueue & Q, QElemType &E) {
     return OK;
 }
 
-//银行业务模拟，统计一天内客户在银行逗留的平均时间
+//算法3.6 银行业务模拟，统计一天内客户在银行逗留的平均时间
 void Bank_Simulation(int CloseTime) {
     OpenForDay();
     while(MoreEvent) {
@@ -735,7 +740,7 @@ void Bank_Simulation(int CloseTime) {
 typedef TElemType SqBiTree[Max_Tree_Size];
 SqBiTree bt;
 
-//先序遍历二叉树T的递归算法，对每个数据元素调用方式Visit
+//算法6.1 先序遍历二叉树T的递归算法，对每个数据元素调用方式Visit
 Status PreOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
     // Status PrintElement(TElemType e) {
     //     printf(e);
@@ -755,7 +760,7 @@ Status PreOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
     }
 }
 
-//采用二叉链表存储结构，Visit是对数据元素操作的应用函数
+//算法6.2 采用二叉链表存储结构，Visit是对数据元素操作的应用函数
 Status InOrderTraverse(BiTree T.Status(*Visit)(TElemType e)) {
     InitStack(S);
     Push(S,T);
@@ -775,7 +780,7 @@ Status InOrderTraverse(BiTree T.Status(*Visit)(TElemType e)) {
     return OK;
 }
 
-//采用二叉链表存储结构，visit是对数据元素操作的应用函数
+//算法6.3 采用二叉链表存储结构，visit是对数据元素操作的应用函数
 //中序遍历二叉树T的非递归算法，对每个元素调用函数Visit
 Status InOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
     IninStack(S);
@@ -795,7 +800,7 @@ Status InOrderTraverse(BiTree T.Status(* Visit)(TElemType e)) {
     return OK;
 }
 
-//按先序次序输入二叉树中结点的值，空格字符表示空树
+//算法6.4 按先序次序输入二叉树中结点的值，空格字符表示空树
 Status CreateBiTree(BiTree &T) {
     scanf(&ch);
     if(ch == '') {
@@ -819,7 +824,7 @@ typedef struct BiTrNode {
     PointerTag LTag, Rtag;
 }BiThrNode, *BiThrTree;
 
-//中序遍历二叉线索树T的非递归算法，对每个数据元素调用函数Visit
+//算法6.5 中序遍历二叉线索树T的非递归算法，对每个数据元素调用函数Visit
 Status InOrderTraverse_Thr(BiThrTree T.Status(*Visit)(TElemType e)) {
     p = T -> lchild;   //p指向根结点
     while(p != T) {    //空树或遍历结束时，p == T
@@ -838,7 +843,7 @@ Status InOrderTraverse_Thr(BiThrTree T.Status(*Visit)(TElemType e)) {
     return OK;
 }
 
-//算法6.5 中序遍历二叉树T，并将其中序线索化，Thrt指向头结点
+//算法6.6 中序遍历二叉树T，并将其中序线索化，Thrt指向头结点
 Status InOrderThreading(BiThrTree &Thrt, BiThrTree T) {
     if(!(Thrt = (BiThrTree)malloc(sizeof(BiThrTree)))) {
         exit(OVERFLOW);
@@ -859,7 +864,7 @@ Status InOrderThreading(BiThrTree &Thrt, BiThrTree T) {
     return OK;
 }
 
-//算法6.6
+//算法6.7
 void InThreading(BiThrTree p) {
     if(p) {
         InThreading(p -> lchild); //左子树线索化
@@ -909,6 +914,7 @@ typedef struct {
 
 //----ADT MFSet 的树的双亲表存储表示------
 typedef PTree MFSet;
+//算法6.8
 int find_mfset(MFSet S, int i) {
     //找集合S中i所在子集的根
     if(i < 1 || i > S.n) {
@@ -918,7 +924,7 @@ int find_mfset(MFSet S, int i) {
     return j;
 }
 
-//算法6.8 求并集Si U Sj
+//算法6.9 求并集Si U Sj
 Status merge_mfset(MFSet &S, int i, int j) {
     //S.nodes[i]和S.nodes[j]分别为S互不相交的两个子集Si和Sj的根结点
     if(i < 1 || i > S.n || j < 1 || j > S.n) {
@@ -928,7 +934,7 @@ Status merge_mfset(MFSet &S, int i, int j) {
     return OK;
 }
 
-//6.9求并集
+//6.10求并集
 void mix_mfset(MFSet &S, int i, int j) {
      if(i < 1 || i > S.n || j < 1 || j > S.n) {
         return ERROR;
@@ -942,7 +948,7 @@ void mix_mfset(MFSet &S, int i, int j) {
     }
 }
 
-//6.10 确定i所在子集，
+//6.11 确定i所在子集，
 // 并将从i至根路径上所有结点变成根的孩子结点。
 int fix_mfset(MFSet &S,int i) {
     if(i < 1 || i > S.n) {
