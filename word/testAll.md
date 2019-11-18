@@ -308,10 +308,13 @@ n. 要求；主张；声称；断言；索赔；提要求的权利；(拥有或�
 #patent v. 取得……的专利权；授予专利
 adj. 专利的；明显的
 n. 专利；专利权；专利品
+P& G applied for a patent on its cookies 
+宝洁公司为它的饼干申请专利权。
 
 ※intellectual property 知识产权
 
-court n. 法院，法庭；球场；庭院
+#court 
+n. 法院，法庭；球场；庭院
 ★courteous adj. 有礼貌的
 line n. 行，列；(思想或行动的)步骤；方式， 方法；路线；线路；(铁道或公交)线路； 行业，行当；队，队伍；血统；家族；界线
 v. 排队；加衬，做里子
@@ -320,6 +323,7 @@ v. 排队；加衬，做里子
 ★decline v./n. 下降；衰退；减少
 ★online adj. 在线的
 ★offline adj. 离线的
+
 Unit 02
 ★coastline n. 海岸线
 ★deadline n. 最后期限；截止时间
