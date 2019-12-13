@@ -1,6 +1,401 @@
+//核心附加算法
+//对一颗以孩子一兄弟链表表示的一般树统计其叶子的个数
+#include
+using namespace std;
+struct Node{	//左孩子，右兄弟表示法
+	struct Node* child,*sibling;
+};
+typedef Node* Tree;
+int counts=0;
+void NumberOfLeaf(Tree root){// recursive
+	if(root==NULL) return;
+	if(root->child==NULL) counts++;
+	NumberOfLeaf(root->child);
+	NumberOfLeaf(root->sibling);
+}
+
+
+//将单链表L1拆开两个链表，其中以L1为头的链表保持原来向后链接，
+//另一个链表头为L2其连接方向与L1相反，L1包含奇数序号节点，L2包含偶数序号节点
+#include
+#include
+using namespace std;
+struct Node{	//单链表
+	int data;
+	struct Node* next;
+};
+typedef Node* List;
+void SplitList(List head,Node* &head1,Node* &head2){
+	vector v;
+	if(head==NULL) return;
+	head=head->next;
+	while(head){//将头结点以外的所有节点顺序放进去
+		v.push_back(head);
+		head=head->next;
+	}
+	head1=new Node,head2=new Node;
+	Node* tmp1=head1,*tmp2=head2;
+	for(int i=1;inext=v[i];
+		tmp1=tmp1->next;
+	}
+	tmp1->next=NULL;
+ 
+	int i=v.size();
+	if(i%2==0) i--; 
+	i--;
+	for( ;i>=0;i=i-2){
+		tmp2->next=v[i];
+		tmp2=tmp2->next;
+	}
+	tmp2->next=NULL;
+	
+}
+
+
+//假设二叉树以二叉链表存储，设计一个算法判断一棵二叉树是否为完全二叉树
+typedef struct BiTNode
+{
+	char data;
+	struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTree;
+BiTree T;
+
+void  Judge(BiTree T)
+{   int	f=0,r=0,s=0;
+    BiTree p,q[MAXQSIZE];
+    q[r++]=T;//根结点入队 
+    while(f<r)
+    {
+		p=q[f++];//根结点出队 
+		if(p)
+		{ 
+ 			q[r++]=p->lchild;//左孩子入队 
+	    	q[r++]=p->rchild;//右孩子入队 
+        }
+        else
+        {
+        	while(f<r)
+        	{
+	        	p=q[f++];
+	        	if(p)s++;
+	        }
+        }
+    }
+    if(s!=0)printf("二叉树不是完全二叉树\n");
+    if(s==0)printf("二叉树是完全二叉树\n");
+}
+
+
+//设计一个含n个整数的线性表。设计一个在时空两方面尽可能高效的算法，将表中数据从小到大排序。
+写排序算法
+
+
+//已知二叉树T采用二叉链表存储结构，每个节点有三个字段，内容、左孩子指针、右孩子指针。
+//请设计一个计算该二叉树所有叶子节点数目的算法。
+#include
+using namespace std;
+struct Node{	//二叉树结点
+	int data;
+	struct Node* lchild,*rchild;
+};
+typedef Node* Tree;
+int counts=0;
+void NumberOfLeaf(Tree root){// recursive
+	if(root==NULL) return;
+	if(root->lchild==NULL&&root->rchild==NULL) counts++;
+	NumberOfLeaf(root->lchild);
+	NumberOfLeaf(root->rchild);
+}
+
+
+//将普通链表中值最小的结点提到最前，要求不能申请新的节点
+void MoveMinToFirst(LinkList& L)
+{
+    LNode *pre = L, *p = L->next;
+    LNode *premin = pre, *min = p;
+    while (p)
+    {
+        if (min->data > p->data)
+        {
+            premin = pre;
+            min = p;
+        }
+        pre = p;
+        p = p->next;
+    }
+    premin->next = min->next;
+    min->next = L->next;
+    L->next = min;
+}
+
+
+//试写出一个递归函数，判断两棵树是否相等
+
+#include
+using namespace std;
+struct Node{	//二叉树结点
+	int data;
+	struct Node* lchild,*rchild;
+};
+typedef Node* Tree;
+bool IsTwoTreesEqual(Tree t1,Tree t2){
+	if(!t1 && !t2) 
+		return true;	
+	if(IsTwoTreesEqual(t1->lchild,t2->lchild) && IsTwoTreesEqual(t1->rchild,t2->rchild)){
+		if(t1->data==t2->data)
+			return true;
+	}
+	return false;
+}
+
+
+//写算法求二叉树的高度
+int height(struct node* node)  
+{ 
+   if (node==NULL)  
+       return 0; 
+   else 
+   { 
+       // 计算左子树的高度和右子树的高度 
+       int lHeight = height(node->left); 
+       int rHeight = height(node->right); 
+       // 返回二者较大者加1 
+       if (lHeight > rHeight)  
+           return(lHeight+1); 
+       else return(rHeight+1); 
+   } 
+} 
+
+
+//写算法，对无头结点的单链表中的元素逆置（不允许申请新的节点空间）
+void InverseElements(List l)
+{
+    if(!l||!l->next) return ;
+    List tmp=l->next;
+    List tmp2=tmp->next;
+    tmp->next=NULL;
+    while(tmp2){
+        l->next=tmp2;
+        tmp2=tmp2->next;
+        l->next->next=tmp;
+        tmp=l->next;
+    }
+}
+
+
+//写算法层次顺序遍历二叉树
+struct Node { 
+    int data; 
+    struct Node *left, *right; 
+}; 
+void printLevelOrder(Node *root) { 
+    if (root == NULL)  return; 
+    // 创建一个空队列 
+    queue<Node *> q; 
+    q.push(root); 
+  
+    while (q.empty() == false) { 
+        // 遍历当前节点
+        Node *node = q.front(); 
+        cout << node->data << " "; 
+        q.pop(); 
+  
+        // 左子节点入队
+        if (node->left != NULL) 
+            q.push(node->left); 
+  
+        // 右子节点入队
+        if (node->right != NULL) 
+            q.push(node->right); 
+    } 
+} 
+
+
+//写算法对双向循环链表按访问频度自高到底进行排序
+#include<bits/stdc++.h>
+using namespace std;
+typedef struct dnode{
+    int data;
+    int freq;
+    struct dnode *next;
+    struct dnode *prior;
+}dinklist;
+dinklist *h;
+void locatenode(dinklist* &h,int x)
+{
+    dinklist *p;
+    p=h->next;
+    int i=0;
+    while(p!=NULL&&p->data!=x)
+    {
+        p=p->next;
+        i++;
+    }
+    p->freq++;
+    dinklist *q,*pre;
+    p=h->next->next;
+    h->next->next=NULL;//
+    while(p!=NULL)
+    {
+        q=p->next;
+        pre=h;
+        while(pre->next!=NULL&&pre->next->freq>p->freq)
+        {
+            pre = pre->next;
+        }
+        p->next=pre->next;
+        if(pre->next!=NULL)
+        {
+            pre->next->prior=p;
+        }
+        pre->next=p;
+        p->prior=pre;
+        p=q;
+    }
+}
+
+
+//简述折半插入排序的思想、稳定性和时间复杂度，并写出算法
+void insertSort(int array[], int n){
+	int temp;
+    for(int i = 1; i < n; i++){
+         int low = 0;
+         int hight = i-1;
+         temp = array[i];
+ 
+         while(hight>=low){
+             int mid = ( low + hight ) / 2;
+             if (array[mid] > temp){
+                    hight = mid - 1;
+             }else{
+                 low = mid + 1;
+              }
+          }
+ 
+          for (int j = i-1; j > hight; j--) {
+              array[j+1] = array[j];
+          }
+ 
+          array[hight+1] = temp;
+	}
+}
+
+
+//写算法将二叉树bt中每一个结点的左右子树互换
+typedef struct BiTNode {
+    TElemType data;
+    BiTNode  *lchild, *rchild;
+} BiTNode, *BiTree;
+void Exchange(BiTree &bt)
+{
+    BiTree temp;
+    if(bt){
+        temp = bt -> lchild;
+        bt -> lchild = bt -> rchild;
+        bt -> rchild = temp;
+        Exchange(bt -> lchild);
+        Exchange(bt -> rchild);
+    }
+}
+
+
+//判断链表前n个字符是否中心对称
+int judge(struct node *head,int len)
+{
+	struct node *top,*p1,*p2;
+    top = NULL;
+    p1 = head->next;
+    for(int i = 0 ; i < len/2 ; i++)
+    {
+        p2 = (struct node *)malloc(LEN);
+        p2->cc = p1->cc;
+        p2->next = top;
+        top = p2;
+        p1 = p1->next;
+    }
+    if(len%2 == 1)
+		p1 = p1->next;
+    p2 = top;
+	for(i = 0 ; i < len/2 ; i++)
+	{
+		if(p2->cc != p1->cc)
+			break;
+		top = p2->next;
+        p1 = p1->next;
+        p2 = top;
+	}
+    if(!top) 
+		return 1;
+    else 
+		return 0;
+}
+
+//设计一个算法判断二叉树是否为二叉排序树
+int prev = MIN;
+int flag = true;
+bool InOrderTraverse(BiTree T)
+{
+	if (T->lchild != NULL && flag)
+		InOrderTraverse(T->lchild);
+	if (T->data<prev)
+		flag = false;
+	prev = T->data;
+	if (T->rchild != NULL && flag)
+		InOrderTraverse(T->rchild);
+	return flag;
+}
+
+
+//利用栈的特性，将a进制数转换为b进制
+a->10->b（数组改栈）
+int toShi(int n,char a[]){
+	int len = strlen(a);
+	int i,ans=0;
+	for(i=0;i<len;i++){
+		if(a[i]>='0'&&a[i]<='9'){
+			ans=ans*n+a[i]-'0';
+		}
+		else{
+			ans = ans*n+a[i]-'A'+10;
+		}
+	}	
+	return ans;
+}
+void toB(int ans,int b){
+	char arr[100];
+	int i,j=0,tmp;
+	while(ans!=0){
+		tmp = ans%b;
+		if(tmp>=10){
+			arr[j++] = tmp-10+'A';
+		}else{
+			arr[j++] = tmp+'0';
+		}
+		ans = ans/b;
+	}
+	for(i=j-1;i>=0;i--){
+		printf("%c",arr[i]);
+	}
+}
+
+//给定一棵树二叉排序树，从中找到比值key小的所有值，并按照从大到小的方式输出
+void InOrder(BSTree *root,int k){
+    if(!root)
+        return ;
+    InOrder(root->rchild,k);
+    if(root->data>=k){
+        visit(root);  
+    }
+    InOrder(root->lchild,k);
+    
+}
+
+
+//奇数位置尾插法 偶数位置头插法
+//类似之前 然后使用尾差法和头插法
+
+
 //数据结构的基本概念，熟悉评价算法的标准
-
-
 //线性表
 //算法2.1 求线性表LA和LB的并集
 void Union(List &La,List Lb) {
